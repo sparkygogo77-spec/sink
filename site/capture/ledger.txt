@@ -1,0 +1,197 @@
+165 captured elements → 126 parts on 1 page, 4 groups, 2 pictures
+elements by kind: {"page":2,"box":54,"words":38,"button":8,"picture":2,"icon":21,"stroke":37,"heading":3}
+parts by feature: {"custom-idea":75,"prose":38,"cta-primary":8,"picture":2,"value-prop":3}
+
+WHERE EACH CAPTURED PROPERTY WENT
+
+align  (37): default 4, nowhere 33
+    33× nowhere: a node has no layout field; a part lays its own contents out
+    1× default: the page has no layout field; parts are placed by box
+
+bg  (15): field 14, nowhere 1
+    11× field: colour.bg and colour.surface
+    2× field: look.palette.bg
+    1× field: colour.accent: a solid button is filled with its accent
+    1× nowhere: oklab() is not a colour the document reads (parseColor: #hex, rgb, oklch; alpha dropped)
+
+bodyBg  (1): field 1
+    1× field: look.palette.bg; palette.mode from its lightness
+
+bodyColor  (1): field 1
+    1× field: look.palette.text
+
+border  (22): field 8, stored 1, nowhere 13
+    13× nowhere: a node has no border field
+    8× field: colour: colour.accent (the part draws its edge in the accent); width 1.11px and style "solid" have no field — the part draws 2px
+    1× stored: colour.accent, which this part does not draw as an edge; width and style have no field
+
+capturedAt  (1): field 1
+    1× field: from.at on every part
+
+color  (88): field 41, stored 8, n/a 2, folded 37
+    41× field: colour.text
+    8× stored: colour.text; the button draws its words in the accent, or in the accent's contrast colour
+    4× folded: the icon's colour.accent (body > div > main > div > div:nth-of-type(4) > div:nth-of-type(1) > div > button > svg)
+    3× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(3) > svg)
+    3× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(4) > svg)
+    2× n/a: a text property on a picture
+    2× folded: the icon's colour.accent (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    2× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(5) > svg)
+
+cols  (1): nowhere 1
+    1× nowhere: a node has no layout field; a part lays its own contents out
+
+dir  (37): nowhere 37
+    36× nowhere: a node has no layout field; a part lays its own contents out
+    1× nowhere: the page has no layout field; parts are placed by box
+
+disp  (37): nowhere 37
+    36× nowhere: a node has no layout field; a part lays its own contents out
+    1× nowhere: the page has no layout field; parts are placed by box
+
+ff  (88): field 49, n/a 39
+    42× field: font.family "monospace"; the name travels, a web font's file does not
+    37× n/a: a text property on a stroke
+    7× field: font.face "Press Start 2P"; the name travels, a web font's file does not
+    2× n/a: a text property on a picture
+
+font  (1): field 1
+    1× field: type.bodyFamily and type.headingFamily as the class "monospace"; the stack itself has no field
+
+fs  (88): field 49, n/a 39
+    37× n/a: a text property on a stroke
+    21× field: font.size 0.88 × base 16 = 14px
+    15× field: font.size 0.75 × base 16 = 12px
+    4× field: font.size 1.5 × base 16 = 24px
+    4× field: font.size 1 × base 16 = 16px
+    3× field: font.size 0.78 × base 16 × the part's own 1.6 = 20px
+    2× n/a: a text property on a picture
+    1× field: font.size 1.25 × base 16 = 20px
+
+fw  (88): field 38, stored 11, n/a 39
+    38× field: font.weight
+    37× n/a: a text property on a stroke
+    8× stored: font.weight; cta-primary sets its own weight (700)
+    3× stored: font.weight; value-prop sets its own weight (700)
+    2× n/a: a text property on a picture
+
+gap  (37): default 18, nowhere 19
+    19× nowhere: a node has no layout field; a part lays its own contents out
+    1× default: the page has no layout field; parts are placed by box
+
+h  (165): nowhere 39, field 126
+    126× field: h
+    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
+    2× nowhere: the frame's height is derived from the lowest part, never stored
+
+href  (3): stored 3
+    2× stored: link (url); custom-idea is not a linkable part, so the link is written but not pressed
+    1× stored: link (url); prose is not a linkable part, so the link is written but not pressed
+
+ins  (6): nowhere 4, default 2
+    4× nowhere: the inset that placed it; its box already carries the result
+
+just  (37): default 22, nowhere 15
+    15× nowhere: a node has no layout field; a part lays its own contents out
+    1× default: the page has no layout field; parts are placed by box
+
+lh  (88): field 46, n/a 39, stored 3
+    37× n/a: a text property on a stroke
+    21× field: font.leading 1.43 (20/14)
+    15× field: font.leading 1.33 (16/12)
+    4× field: font.leading 1.33 (32/24)
+    4× field: font.leading 1.5 (24/16)
+    3× stored: font.leading; value-prop sets its own line height (1.2)
+    2× n/a: a text property on a picture
+    1× field: font.leading 1.4 (28/20)
+
+ls  (88): field 2, default 47, n/a 39
+    37× n/a: a text property on a stroke
+    2× n/a: a text property on a picture
+    1× field: font.spacing 0.05em
+    1× field: font.spacing 0.025em
+
+mar  (22): nowhere 22
+    22× nowhere: a node has no margin field; the box already stands where the margin put it
+
+maxw  (4): nowhere 2, default 2
+    2× nowhere: a node has a size, not a constraint on one
+
+minh  (75): nowhere 1, default 74
+    1× nowhere: the page's height is derived
+
+pad  (29): nowhere 29
+    29× nowhere: a node has no padding field; a part pads itself
+
+page[0]  (1): field 1
+    1× field: frameWidth (the same number)
+
+page[1]  (1): nowhere 1
+    1× nowhere: the frame's height is derived from the lowest part
+
+pos  (6): nowhere 4, default 2
+    3× nowhere: fixed: a part is placed on the page by its box and scrolls with it; nothing is fixed to the viewport
+    2× default: relative with no offset
+    1× nowhere: absolute: a part is placed on the page by its box and scrolls with it; nothing is fixed to the viewport
+
+src  (4): field 2, nowhere 2
+    1× field: the bytes, as a look.texture image layer (316593 bytes) worn via node.texture; the address itself is kept in data as words only
+    1× nowhere: the picture's natural size (1024×1024) — the layer covers the box
+    1× field: the bytes, as a look.texture image layer (56390 bytes) worn via node.texture; the address itself is kept in data as words only
+    1× nowhere: the picture's natural size (706×353) — the layer covers the box
+
+t  (165): field 165
+    54× field: the tag picks the part (box) and is kept in from.selector
+    38× field: the tag picks the part (words) and is kept in from.selector
+    37× field: the tag picks the part (stroke) and is kept in from.selector
+    21× field: the tag picks the part (icon) and is kept in from.selector
+    8× field: the tag picks the part (button) and is kept in from.selector
+    3× field: the tag picks the part (heading) and is kept in from.selector
+    2× field: the tag picks the part (page) and is kept in from.selector
+    2× field: the tag picks the part (picture) and is kept in from.selector
+
+ta  (88): default 27, nowhere 22, n/a 39
+    37× n/a: a text property on a stroke
+    22× nowhere: alignment is a site-wide format value (type.align), not a part's own
+    2× n/a: a text property on a picture
+
+text  (49): field 49
+    49× field: content
+
+title  (1): field 1
+    1× field: brief.name and pages[0].name
+
+tt  (88): default 48, nowhere 1, n/a 39
+    37× n/a: a text property on a stroke
+    2× n/a: a text property on a picture
+    1× nowhere: no node field for text-transform; heading case is site-wide (type.headingCase)
+
+url  (1): field 1
+    1× field: from.url on every part; pages[0].path
+
+viewport[0]  (1): field 1
+    1× field: frameWidth
+
+viewport[1]  (1): nowhere 1
+    1× nowhere: the frame has no viewport height
+
+w  (165): field 128, nowhere 37
+    126× field: w
+    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
+    2× field: the page's own width: frameWidth
+
+wrap  (37): default 37
+    1× default: the page has no layout field; parts are placed by box
+
+x  (165): default 2, field 126, nowhere 37
+    126× field: x
+    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
+    2× default: the page's own origin
+
+y  (165): default 2, field 126, nowhere 37
+    126× field: y
+    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
+    2× default: the page's own origin
+
+z  (6): nowhere 2, default 4
+    2× nowhere: stacking is the order of the nodes array, never a number
