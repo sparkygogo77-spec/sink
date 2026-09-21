@@ -1,4 +1,4 @@
-165 captured elements → 126 parts on 1 page, 4 groups, 2 pictures
+165 captured elements → 126 parts on 1 page, 4 groups, 2 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png)
 elements by kind: {"page":2,"box":54,"words":38,"button":8,"picture":2,"icon":21,"stroke":37,"heading":3}
 parts by feature: {"custom-idea":75,"prose":38,"cta-primary":8,"picture":2,"value-prop":3}
 
@@ -134,11 +134,9 @@ pos  (6): nowhere 4, default 2
     2× default: relative with no offset
     1× nowhere: absolute: a part is placed on the page by its box and scrolls with it; nothing is fixed to the viewport
 
-src  (4): field 2, nowhere 2
-    1× field: the bytes, as a look.texture image layer (316593 bytes) worn via node.texture; the address itself is kept in data as words only
-    1× nowhere: the picture's natural size (1024×1024) — the layer covers the box
-    1× field: the bytes, as a look.texture image layer (56390 bytes) worn via node.texture; the address itself is kept in data as words only
-    1× nowhere: the picture's natural size (706×353) — the layer covers the box
+src  (2): field 2
+    1× field: node.picture: a reference to assets/pictures/pic_cc8659c3.png (316593 bytes, 1024×1024), the bytes committed beside the document; the address itself is kept in data as words only
+    1× field: node.picture: a reference to assets/pictures/pic_ebf39fa1.png (56390 bytes, 706×353), the bytes committed beside the document; the address itself is kept in data as words only
 
 t  (165): field 165
     54× field: the tag picks the part (box) and is kept in from.selector

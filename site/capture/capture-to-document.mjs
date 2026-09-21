@@ -28,7 +28,7 @@
  *
  *   body, and the wrapper that is the page's own box   → the page's look
  *   svg                                                 → a plain box (icon); its strokes fold into it
- *   img                                                 → the `picture` part, wearing the bytes
+ *   img                                                 → the `picture` part, holding the picture as its own
  *   own text, h1..h6                                    → `value-prop` (a heading)
  *   own text, button or a, painted or edged             → `cta-primary` (a button)
  *   own text, anything else                             → `prose`
@@ -231,36 +231,45 @@ function fontOf(el, featureId) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Pictures: the bytes, as the import's "shrink in" carries them         */
+/* Pictures: the part's own, as a reference, with the bytes beside it    */
 /* ------------------------------------------------------------------ */
 
 /**
- * The `picture` part paints `node.texture`, a `look.texture` image layer
- * whose `src` is the picture as a data URL — exactly what ImportFlow.tsx's
- * shrinkIn writes. The bytes come from the file the capture's `src` names,
- * read out of --pictures by file name; without them the layer is left off
- * and the ledger says so.
+ * A picture is the part's own: `node.picture`, "the picture this part
+ * holds, as a reference and never as bytes" (polio `store.ts`). The
+ * document keeps the id, the path, the type and the size; the bytes go in
+ * the repository at that path, which is where the exact-copy path fetches
+ * them from (`repoRun.ts#copyOf`) and where a published site serves them
+ * (`staticSite.ts`). The path follows `pictures.ts#put`.
+ *
+ * Never a `look.texture` layer: a layer is the page's, and one aimed at
+ * surfaces is worn by every card-styled part on the board, not by the one
+ * that holds it.
+ *
+ * The bytes come from the file the capture's `src` names, read out of
+ * --pictures by file name and written under <out-dir>/assets/pictures;
+ * without them the part keeps the address in `data` and the ledger says so.
  */
 function pngSize(buf) {
   if (buf.length < 24 || buf.readUInt32BE(0) !== 0x89504e47) return null;
   return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
 }
-const layers = [];
-function layerFor(src) {
+const pictures = [];
+function pictureFor(src) {
   const name = basename(new URL(src, cap.url).pathname);
   const file = picturesDir ? join(picturesDir, name) : null;
   if (!file || !existsSync(file)) return null;
   const bytes = readFileSync(file);
   const size = pngSize(bytes);
-  const type = size ? "image/png" : "application/octet-stream";
-  const id = `tx_${createHash("sha1").update(src).digest("hex").slice(0, 6)}`;
-  const layer = {
-    id, kind: "image", role: "accent", scale: 100, angle: 0, opacity: 1, contrast: 0, blend: "normal", hue: 0,
-    target: "surfaces", pattern: false, cutout: false, tolerance: 0.35, weave: 1, on: true,
-    src: `data:${type};base64,${bytes.toString("base64")}`,
-  };
-  layers.push(layer);
-  return { layer, name, size, bytes: bytes.length };
+  if (!size) return null;
+  const id = `pic_${createHash("sha1").update(src).digest("hex").slice(0, 8)}`;
+  const path = `assets/pictures/${id}.png`;
+  mkdirSync(join(outDir, "assets", "pictures"), { recursive: true });
+  writeFileSync(join(outDir, path), bytes);
+  // `from` names where a picture came from and knows two answers, chosen from a machine or drawn; a copied site's pictures are kept as "upload" (FromASite.tsx), so this is too.
+  const record = { id, path, type: "image/png", w: size.w, h: size.h, bytes: bytes.length, alt: "", from: "upload" };
+  pictures.push(record);
+  return { record, name, size, bytes: bytes.length };
 }
 
 /* ------------------------------------------------------------------ */
@@ -403,17 +412,16 @@ for (const el of all) {
   }
 
   /* The picture. */
-  let texture = null;
+  let picture = null;
   let data = "";
   let label;
   if (kind === "picture") {
-    const got = layerFor(el.src);
+    const got = pictureFor(el.src);
     data = el.src;
     if (got) {
-      texture = got.layer.id;
+      picture = got.record;
       label = got.name.replace(/\.[^.]+$/, "") || "Picture";
-      note(sel, "src", "field", `the bytes, as a look.texture image layer (${got.bytes} bytes) worn via node.texture; the address itself is kept in data as words only`);
-      if (got.size && (got.size.w !== el.w || got.size.h !== el.h)) note(sel, "src", "nowhere", `the picture's natural size (${got.size.w}×${got.size.h}) — the layer covers the box`);
+      note(sel, "src", "field", `node.picture: a reference to ${got.record.path} (${got.bytes} bytes, ${got.size.w}×${got.size.h}), the bytes committed beside the document; the address itself is kept in data as words only`);
     } else {
       label = basename(new URL(el.src, cap.url).pathname);
       note(sel, "src", "nowhere", "the bytes were not supplied (--pictures), so the address is kept in data as words only");
@@ -490,7 +498,8 @@ for (const el of all) {
     aura: null,
     auraSize: 1,
     auraStyle: "glow",
-    texture,
+    texture: null,
+    ...(picture ? { picture } : {}),
     sketch: null,
     from: { url: cap.url, host, selector: sel, at },
   });
@@ -526,7 +535,8 @@ const doc = {
   brief: { name: cap.title, gimmick: "", master: "" },
   look: {
     palette: { bg: cap.bodyBg, text: cap.bodyColor },
-    texture: layers,
+    // Never a picture: a page layer is worn by every part, not by the one that holds it.
+    texture: [],
     target: "page",
     light: DEFAULT_LIGHT,
   },
@@ -546,7 +556,7 @@ writeFileSync(join(outDir, "site", "document.json"), JSON.stringify(doc, null, 2
 
 const byKind = {};
 for (const el of all) byKind[el.kind] = (byKind[el.kind] ?? 0) + 1;
-console.log(`${all.length} captured elements → ${nodes.length} parts on ${doc.pages.length} page, ${groups.length} groups, ${layers.length} pictures`);
+console.log(`${all.length} captured elements → ${nodes.length} parts on ${doc.pages.length} page, ${groups.length} groups, ${pictures.length} pictures${pictures.length ? ` (${pictures.map((p) => p.path).join(", ")})` : ""}`);
 console.log("elements by kind:", JSON.stringify(byKind));
 console.log("parts by feature:", JSON.stringify(nodes.reduce((m, n) => ({ ...m, [n.featureId]: (m[n.featureId] ?? 0) + 1 }), {})));
 
