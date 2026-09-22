@@ -17,6 +17,14 @@
  *           `sw` as computed, and `vb`, the svg's viewBox
  *   title   a button's or a link's `title` attribute — the words the page
  *           shows for it on hover, when it shows none in the box
+ *   role    what the element IS, as the browser's own accessibility tree
+ *           computes it (`Accessibility.getFullAXTree`): a search field is
+ *           a `searchbox`, a nav is `navigation`, a button is `button`. With
+ *           it `name`, the accessible name the tree computed, and `state`,
+ *           the states it reports (pressed, expanded, disabled, checked,
+ *           selected, current). Nothing is inferred: an element the tree
+ *           leaves generic or ignored carries no role.
+ *   type    a field's `type`, and `placeholder` its placeholder, as written
  *
  * WHY A WALLET STANDS IN. The sidebar, and every section it leads to, is
  * rendered only when a wallet is connected (`app/page.tsx`: `connected &&
@@ -186,6 +194,15 @@ const DUMP = () => {
     if (t === "a" && el.getAttribute("href") !== null) e.href = el.getAttribute("href");
     const title = el.getAttribute("title") || el.getAttribute("aria-label");
     if (title && (t === "a" || t === "button")) e.title = title.trim();
+    const aria = el.getAttribute("aria-label"); if (aria) e.aria = aria.trim();
+    if (el.dataset.axRole) e.role = el.dataset.axRole;
+    if (el.dataset.axName) e.name = el.dataset.axName;
+    if (el.dataset.axState) e.state = JSON.parse(el.dataset.axState);
+    if (t === "input" || t === "textarea" || t === "select") {
+      e.type = t === "input" ? (el.getAttribute("type") || "text") : t;
+      if (el.getAttribute("placeholder")) e.placeholder = el.getAttribute("placeholder");
+      if (el.value) e.value = el.value;
+    }
     if (t === "svg" && el.getAttribute("viewBox")) e.vb = el.getAttribute("viewBox");
     if (SHAPES.has(t)) {
       const d = pathOf(el); if (d) e.d = d;
@@ -287,6 +304,34 @@ if (click) {
 await page.evaluate(() => scrollTo(0, 0));
 await page.waitForTimeout(200);
 
+/*
+ * What each element is, by the browser's own accessibility tree, written
+ * onto the element as data attributes for the dump to read. The tree is
+ * the browser's computation, not a reading of tags: a `div` with
+ * role="search" is a search landmark, an `input type="search"` is a
+ * searchbox, a `button` is a button. Generic and ignored nodes are left
+ * unmarked, so an element with no role in the tree has none here.
+ */
+const cdp = await context.newCDPSession(page);
+await cdp.send("DOM.enable");
+await cdp.send("Accessibility.enable");
+const { nodes: ax } = await cdp.send("Accessibility.getFullAXTree");
+const STATES = new Set(["pressed", "expanded", "disabled", "checked", "selected", "current", "required", "invalid", "readonly", "modal", "hidden"]);
+for (const n of ax) {
+  if (n.ignored || !n.backendDOMNodeId) continue;
+  const role = n.role?.value;
+  if (!role || role === "generic" || role === "none" || role === "presentation" || role === "StaticText" || role === "InlineTextBox") continue;
+  const name = n.name?.value ?? "";
+  const state = {};
+  for (const p of n.properties ?? []) if (STATES.has(p.name) && p.value?.value !== undefined && p.value.value !== false && p.value.value !== "false") state[p.name] = p.value.value;
+  let object;
+  try { ({ object } = await cdp.send("DOM.resolveNode", { backendNodeId: n.backendDOMNodeId })); } catch { continue; }
+  await cdp.send("Runtime.callFunctionOn", {
+    objectId: object.objectId,
+    functionDeclaration: `function (role, name, state) { if (this.nodeType !== 1) return; this.dataset.axRole = role; if (name) this.dataset.axName = name; if (state) this.dataset.axState = state; }`,
+    arguments: [{ value: role }, { value: name }, { value: Object.keys(state).length ? JSON.stringify(state) : "" }],
+  }).catch(() => {});
+}
 const cap = await page.evaluate(DUMP);
 if (section) cap.section = section;
 if (click) cap.reached = { click, within };
