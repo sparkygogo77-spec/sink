@@ -3,7 +3,7 @@
 `../document.json` is https://ccc-woad.vercel.app as the Builder's document,
 the file the exact-copy path loads whole: nine pages, every visible element
 of each as its own part at its own box. Made by declared rules only, against
-polio trunk 8998cec; `ledger.txt` is what the converter printed — for every
+polio trunk b73babb; `ledger.txt` is what the converter printed — for every
 captured property, where it went (a typed field, a parent it folded into, a
 CSS default, or nowhere), page by page.
 
@@ -86,16 +86,19 @@ which is wider than the one his capture was measured in: the same label
 came in at 85px on his machine and 92px here. Words set in Press Start 2P,
 a carried face, measure the same on both.
 
-## The button ruling, pending
+## A button is a button, in its own clothes
 
-The ruling is that a thing that is a button with words on it becomes a
-button part carrying those words. The constraint on it is that a button
-that came from a capture keeps the colour, weight and edge the capture
-recorded. The `cta-primary` part cannot hold them as it stands: it sets its
-words in the accent's contrast colour, its weight at 700, its edge at 2px
-in the accent, and centres them; his inactive sidebar entries are grey,
-weight 400, unedged, set left beside an icon. Which gives way is his call,
-so the eight sidebar buttons, and the two icon-only documentation links,
-stay what the capture measured — a box holding an icon and words — with
-the page each leads to carried as `node.link` on the box. A box does not
-press a link. The head of `capture-to-document.mjs` says the same.
+Every element the tree calls a button, its words on it or in a child, is
+the `cta-primary` part carrying those words (polio trunk b73babb: "the node
+where the node spoke, the part's own where it did not"). A button node
+says everything the capture measured — `colour.text`, `colour.bg` when it
+had a fill, `font`, `text.align`, `edge` as measured or an edge of none,
+`pad` — and the part stands aside for each. The span that held the words is
+folded into the button; the icon beside it stays its own drawn-icon. Where
+the fill could not be carried (an `oklab()` tint the document does not
+read) the variant is outline, never a solid accent the page did not have.
+
+One gap remains on the polio side: the wrapper draws a node's edge and
+padding but not its fill, which `Fill` paints inside the padding, so a
+padded button with a fill (the active sidebar entry) shows its fill inset
+by the padding rather than to the edge of its box.

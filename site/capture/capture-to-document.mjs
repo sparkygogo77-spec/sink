@@ -9,7 +9,7 @@
  * is. This turns them into `site/document.json`, the file the Builder's
  * exact-copy path loads whole (polio: `repoRun.ts` reads it out of a
  * repository, `store.ts#loadDoc` → `docTake.ts#takeDoc` lays it over the
- * board). Written against polio trunk 8998cec; every field name is read
+ * board). Written against polio trunk b73babb; every field name is read
  * from `store.ts`, `parts/theme.ts`, `parts/types.ts`, `fonts.ts` and
  * `vector.ts` there and cited where it is used.
  *
@@ -60,20 +60,28 @@
  * be cleaner than label, prompt and data; that is a change to polio's
  * `StudioNode`, not to this converter.
  *
- * A BUTTON WHOSE WORDS SIT IN A CHILD (the eight entries of his sidebar: a
- * `button` holding an `svg` and a `span`) is NOT reclassified here. The
- * ruling is that a thing that is a button with words on it becomes a
- * button part carrying those words; the constraint on it is that a button
- * that came from a capture keeps the colour, weight and edge the capture
- * recorded. The `cta-primary` part (parts/Cta.tsx) cannot hold them: it
- * sets its words in the theme's accent-contrast colour, its weight at 700,
- * its edge at 2px in the accent, and centres — his inactive entries are
- * grey, weight 400, unedged and set left beside an icon. Which of working
- * and faithful gives way is his call, so until it is made those buttons
- * stay what the capture measured, box holding icon and words, and the
- * page each leads to is written on the box as `node.link` — carried, so
- * the choice is one rule here, and the ledger says the box does not press
- * it.
+ * A BUTTON IS A BUTTON, IN ITS OWN CLOTHES (polio trunk b73babb). Every
+ * element the tree calls a button, its words on it or in a child (the
+ * eight entries of his sidebar: a `button` holding an `svg` and a `span`),
+ * is `cta-primary` carrying those words. The part's rule on trunk is "the
+ * node where the node spoke, the part's own where it did not"
+ * (parts/theme.ts#NodeSaid, parts/Cta.tsx), so a button node here says
+ * everything the capture measured, and the part stands aside for each:
+ *   colour.text   its words' colour — the part draws them in it
+ *   colour.bg     its fill, when it had one — `Fill` paints it, the part paints nothing over it
+ *   font          size, weight, face — `t.fontWeight` is only ever the node's
+ *   text.align    left, when it was — the part sets its words there rather than centred
+ *   edge          as measured, or an edge of none — the wrapper draws it and the part draws none,
+ *                 where before it drew a 2px edge of its own (or a transparent one 2px wide)
+ *   pad           as measured — the wrapper pads, so the words start where the page started them.
+ *                 The wrapper does not paint a fill, and `Fill` paints the node's inside the
+ *                 padding, so a padded button WITH a fill shows it inset by the padding: a
+ *                 gap on the polio side, said here rather than worked around.
+ * The span that held the words is folded into the button's content; the
+ * icon beside it stays its own drawn-icon at its own box. Where the button
+ * had no fill, `variant` is `outline`, the one variant that paints nothing,
+ * and the edge of none keeps it edgeless. The ledger says which of these
+ * each button said.
  *
  * A BOX CARRIES ITS OWN ARRANGEMENT. `StudioNode` has four optional box
  * fields (parts/theme.ts#NodeBox, store.ts): `layout` (display, direction,
@@ -446,9 +454,10 @@ function convert(pageDef, cap) {
     const words = (el.text ?? "").trim();
     if (el.role === "heading" && words) return "heading";
     if (el.role === "paragraph" && words) return "words";
-    // A button by role with its own words, painted or edged: the one case the button part draws faithfully enough today.
-    // Unpainted, or with its words in a child, it keeps the shape's part until the part holds a captured look (see the head of this file).
-    if (el.role === "button" && words && (el.bg || el.border)) return "button";
+    // A button by role with words on it, its own or a child's: the button part, in the captured clothes (see the head of this file).
+    if (el.role === "button" && wordsWithin(el)) return "button";
+    // The words a button holds in a child are the button's; the child is folded into it.
+    if (el.parent && el.parent.kind === "button" && words && !el.kids.length) return "folded";
     if (words) {
       if (/^h[1-6]$/.test(el.t)) return "heading";
       if ((el.t === "button" || el.t === "a") && (el.bg || el.border)) return "button";
@@ -457,6 +466,7 @@ function convert(pageDef, cap) {
     return "box";
   }
   for (const el of all) el.kind = classify(el);
+  const buttonWords = (el) => (el.text ?? "").trim() || wordsWithin(el);
 
   const positioned = (el) => el.pos === "fixed" || el.pos === "absolute";
   function bandOf(el) {
@@ -480,6 +490,13 @@ function convert(pageDef, cap) {
       if ("minh" in el) note(sel, "minh", DEFAULT_OF.minh(el.minh) ? "default" : "nowhere", "the page's height is derived");
       continue;
     }
+    if (kind === "folded") {
+      note(sel, "text", "folded", `the button's content (${el.parent.sel})`);
+      for (const p of ["x", "y", "w", "h"]) note(sel, p, "folded", "the button's box holds it; where the words start is the button's pad");
+      for (const p of TEXT_PROPS) if (p in el) note(sel, p, "folded", `the button's ${p === "color" ? "colour.text" : "font"}`);
+      for (const p of [...LAYOUT_PROPS, "minh", "maxw", "mar", "pad"]) if (p in el) note(sel, p, "folded", "");
+      continue;
+    }
     if (kind === "stroke") {
       const icon = (() => { let n = el; while (n && n.t !== "svg") n = n.parent; return n; })();
       const drawn = icon?.kind === "icon";
@@ -495,12 +512,14 @@ function convert(pageDef, cap) {
     }
 
     const featureId = FEATURE[kind];
-    const words = (el.text ?? "").trim();
-    const drawsOwnBox = kind === "button";
+    const words = kind === "button" ? buttonWords(el) : (el.text ?? "").trim();
+    /* A button's type is read off the element that held its words: the child span, when the words were in one. */
+    const wordsEl = kind === "button" && !(el.text ?? "").trim() ? all.find((k) => k.parent === el && k.kind === "folded") ?? el : el;
+    const drawsOwnBox = false;
 
     /* Words. */
     let content = "";
-    if (words) { content = words; note(sel, "text", "field", "content"); }
+    if (words) { content = words; note(sel, "text", "field", kind === "button" && wordsEl !== el ? "content, from the child that held the words" : "content"); }
 
     /* Colour roles (recreate.ts#colourFrom): bg is what it is painted on, text what its words are set in,
        accent the most coloured thing in it; a button's edge is always its accent, because that is what the part draws the edge in. */
@@ -508,8 +527,7 @@ function convert(pageDef, cap) {
     const border = borderOf(el.border);
     if (el.bg) {
       if (PARSEABLE.test(el.bg)) {
-        if (kind === "button" && alphaOf(el.bg) >= 1) { colour.accent = el.bg; note(sel, "bg", "field", "colour.accent: a solid button is filled with its accent"); }
-        else if (kind === "button") { note(sel, "bg", "nowhere", `a see-through fill (alpha ${alphaOf(el.bg)}): the ghost button paints its accent at 13% instead`); }
+        if (kind === "button") { colour.bg = el.bg; colour.accent = el.bg; note(sel, "bg", "field", "colour.bg: the node's own fill, painted by Fill; the button part paints nothing over a fill the node named"); }
         else if (kind === "box") {
           colour.bg = el.bg; colour.surface = el.bg;
           note(sel, "bg", "field", "colour.bg and colour.surface");
@@ -519,12 +537,13 @@ function convert(pageDef, cap) {
         note(sel, "bg", "nowhere", `${el.bg.split("(")[0]}() is not a colour the document reads (parseColor: #hex, rgb, oklch; alpha dropped)`);
       }
     }
-    if (el.color) {
+    const ink = kind === "button" ? wordsEl.color ?? el.color : el.color;
+    if (ink) {
       if (kind === "picture") note(sel, "color", "n/a", "a text property on a picture");
-      else if (PARSEABLE.test(el.color)) {
-        colour.text = el.color;
-        note(sel, "color", kind === "button" ? "stored" : "field", kind === "button" ? "colour.text; the button draws its words in the accent, or in the accent's contrast colour — not in this" : "colour.text");
-      } else note(sel, "color", "nowhere", `${el.color.split("(")[0]}() is not a colour the document reads`);
+      else if (PARSEABLE.test(ink)) {
+        colour.text = ink;
+        note(sel, "color", "field", kind === "button" ? "colour.text: the button draws its words in a colour the node named" : "colour.text");
+      } else note(sel, "color", "nowhere", `${ink.split("(")[0]}() is not a colour the document reads`);
     }
     let strokes = [];
     let inks = [];
@@ -540,13 +559,13 @@ function convert(pageDef, cap) {
     /* The box: layout, padding, edge, text (parts/theme.ts#NodeBox). */
     const layout = layoutOf(el);
     const pad = drawsOwnBox ? null : padOf(el);
-    const edge = drawsOwnBox ? null : edgeOf(border);
-    const text = textOf(el);
+    const edge = kind === "button" ? (edgeOf(border) ?? { width: 0, style: "none" }) : edgeOf(border);
+    const text = kind === "button" ? (textOf(wordsEl) ?? textOf(el)) : textOf(el);
 
     if (border) {
       if (kind === "button") {
         if (!colour.accent && PARSEABLE.test(border.colour)) colour.accent = border.colour;
-        note(sel, "border", colour.accent === border.colour ? "field" : "stored", `colour: colour.accent (the part draws its edge in the accent); width ${round2(border.width)}px and style "${border.style}" stay off — the button draws its own 2px edge, and an edge on the node would draw a second round it`);
+        note(sel, "border", "field", `edge {width ${border.width}, style ${border.style}, colour}: the wrapper draws it and the button part draws none of its own`);
       } else {
         note(sel, "border", "field", `edge {width ${border.width}, style ${border.style}, colour}${edge && !edge.colour ? "; the colour is not one the document reads, so the edge takes the site's line colour" : ""}`);
       }
@@ -563,21 +582,19 @@ function convert(pageDef, cap) {
         note(sel, p, seen ? "field" : "stored", `layout.${LAYOUT_FIELD[p]}${seen ? "" : ": the part fills the box, so a layout round it has one child and nothing to arrange"}`);
       } else note(sel, p, "nowhere", "not a value NodeLayout takes");
     }
-    if (el.pad) {
-      if (drawsOwnBox) note(sel, "pad", "nowhere", "the button pads its own words inside its own edge; padding on the node would shrink the button inside the measured box");
-      else note(sel, "pad", "field", `pad {${el.pad.join(", ")}}; the theme is set tight so the part adds no padding of its own`);
-    }
-    if ("ta" in el && kind !== "picture") note(sel, "ta", DEFAULT_OF.ta(el.ta) ? "default" : text?.align ? "field" : "nowhere", DEFAULT_OF.ta(el.ta) ? "" : text?.align ? `text.align ${el.ta}${kind === "button" ? "; the button centres its one line whatever is said" : ""}` : "not a value NodeText takes");
+    if (el.pad) note(sel, "pad", "field", `pad {${el.pad.join(", ")}}; the theme is set tight so the part adds no padding of its own${kind === "button" ? "; the button's words start where the page started them" : ""}`);
+    if (kind === "button" && !border) note(sel, "border", "field", "edge {none}: the page drew no edge, and the button part draws a 2px edge of its own unless the node names one, so none is named");
+    if ("ta" in el && kind !== "picture") note(sel, "ta", DEFAULT_OF.ta(el.ta) ? "default" : text?.align ? "field" : "nowhere", DEFAULT_OF.ta(el.ta) ? "" : text?.align ? `text.align ${el.ta}${kind === "button" ? "; the button sets its words where the node said" : ""}` : "not a value NodeText takes");
     if ("tt" in el && kind !== "picture") note(sel, "tt", DEFAULT_OF.tt(el.tt) ? "default" : text?.transform ? "field" : "nowhere", DEFAULT_OF.tt(el.tt) ? "" : text?.transform ? `text.transform ${el.tt}` : "not a value NodeText takes");
 
     /* Type. */
     let font = null;
     if (words) {
-      font = fontOf(el, featureId);
-      const drawsWeight = kind === "words";
+      font = fontOf(wordsEl, featureId);
+      const drawsWeight = kind === "words" || kind === "button";
       const drawsLeading = kind !== "heading";
       note(sel, "fs", "field", `font.size ${font.size} × base ${BASE_PX}${PART_SCALE[featureId] !== 1 ? ` × the part's own ${PART_SCALE[featureId]}` : ""} = ${el.fs}px`);
-      if ("fw" in el) note(sel, "fw", drawsWeight ? (font.weight > CLAMP.weight[1] ? "stored" : "field") : "stored", drawsWeight ? (font.weight > CLAMP.weight[1] ? `font.weight; the theme clamps it to ${CLAMP.weight[1]}` : "font.weight") : `font.weight; ${featureId} sets its own weight (700)`);
+      if ("fw" in el) note(sel, "fw", drawsWeight ? (font.weight > CLAMP.weight[1] ? "stored" : "field") : "stored", drawsWeight ? (font.weight > CLAMP.weight[1] ? `font.weight; the theme clamps it to ${CLAMP.weight[1]}` : `font.weight${kind === "button" ? ": the button's weight is the node's, else 700" : ""}`) : `font.weight; ${featureId} sets its own weight (700)`);
       if ("ff" in el) note(sel, "ff", "field", `font.${font.face ? `face "${font.face}"` : ""}${font.face && font.family ? " and " : ""}${font.family ? `family "${font.family}"` : ""}${font.face ? "; the face is carried in look.fonts when its file is" : `; "${el.ff}" is a generic keyword, the machine's own face, which cannot be carried`}`);
       if ("lh" in el) note(sel, "lh", drawsLeading ? "field" : "stored", drawsLeading ? `font.leading ${font.leading} (${el.lh}/${el.fs})` : `font.leading; ${featureId} sets its own line height (1.2)`);
       if ("ls" in el) note(sel, "ls", DEFAULT_OF.ls(el.ls) ? "default" : font.spacing !== undefined ? "field" : "nowhere", DEFAULT_OF.ls(el.ls) ? "" : font.spacing !== undefined ? `font.spacing ${font.spacing}em` : "under the 0.005em the reading keeps");
@@ -692,8 +709,9 @@ function convert(pageDef, cap) {
     if (kind === "button") {
       // No radius was captured on any element, and the capture leaves a zero property out (as it does bg and pad), so every corner is square.
       options.shape = "square";
-      // Painted solid is solid; painted see-through is the ghost (the part fills a ghost with its accent at 13%); edged only is the outline.
-      options.variant = el.bg ? (alphaOf(el.bg) < 1 ? "ghost" : "solid") : "outline";
+      // A fill the node named is painted by Fill and the part paints nothing over it; with no fill, outline is the one variant that paints nothing of its own, and the edge of none keeps it edgeless.
+      options.variant = colour.bg ? "solid" : "outline";
+      if (el.bg && !colour.bg) note(sel, "bg", "nowhere", `the fill could not be carried, so the variant is outline rather than a solid accent the page never had`);
       options.size = "medium";
     }
     if (kind === "heading") options.turn = "none";
