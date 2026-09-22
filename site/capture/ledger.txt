@@ -1,46 +1,102 @@
-165 captured elements → 126 parts on 1 page, 0 groups, 2 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png)
-elements by kind: {"page":2,"box":54,"words":38,"button":8,"picture":2,"icon":21,"stroke":37,"heading":3}
-parts by feature: {"box":75,"prose":38,"value-prop":3,"cta-primary":8,"picture":2}
-parts carrying a box field: {"layout":36,"pad":22,"edge":14,"text":22}
-paint order: 56 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+1042 captured elements on 9 pages → 784 parts, 0 groups, 3 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png, assets/pictures/pic_95e3b0fe.png), 1 faces carried
 
-overlaps in the measured geometry: 23 — 19 a positioned band over what flows beneath it, 4 a child poking out of its own parent
-    body > div > main  ×  body > div > header  (1507×9px, the band paints on top)
-    body > div > main  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
-    body > div > main  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
-    body > div > main > div  ×  body > div > header  (1507×9px, the band paints on top)
-    body > div > main > div  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
-    body > div > main > div  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1)  ×  body > div > header  (1507×9px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(1)  ×  body > div > header  (365×9px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2)  ×  body > div > header  (365×9px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2)  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2)  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2)  (112×11px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2) > img  (112×11px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(3)  ×  body > div > header  (365×9px, the band paints on top)
-    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(4)  ×  body > div > header  (365×9px, the band paints on top)
-    body > div > aside  ×  body > div > header  (256×9px, the band paints on top)
-    body > div > aside > nav  ×  body > div > header  (255×9px, the band paints on top)
-    body > div > header  ×  body > div > header > div > div:nth-of-type(2)  (112×82px, the child paints on top)
-    body > div > header  ×  body > div > header > div > div:nth-of-type(2) > img  (112×82px, the child paints on top)
-    body > div > header > div  ×  body > div > header > div > div:nth-of-type(2)  (112×49px, the child paints on top)
-    body > div > header > div  ×  body > div > header > div > div:nth-of-type(2) > img  (112×49px, the child paints on top)
+page_home (Creator Hub, /): 168 elements → 126 parts
+  elements by kind: {"page":2,"box":54,"words":38,"button":8,"picture":2,"icon":21,"stroke":40,"heading":3}
+  parts by feature: {"box":54,"prose":38,"drawn-icon":21,"value-prop":3,"cta-primary":8,"picture":2}
+  parts carrying a box field: {"layout":36,"pad":22,"edge":14,"text":22}
+  links: {"url:https://pump.fun/":1,"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 56 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 24 — 19 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
-WHERE EACH CAPTURED PROPERTY WENT
+page_cleanup (Cleanup, /cleanup, after pressing "Cleanup"): 118 elements → 87 parts
+  elements by kind: {"page":2,"box":40,"words":22,"button":3,"picture":2,"icon":17,"stroke":29,"heading":3}
+  parts by feature: {"box":40,"drawn-icon":17,"value-prop":3,"prose":22,"cta-primary":3,"picture":2}
+  parts carrying a box field: {"layout":26,"pad":16,"edge":8,"text":14}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 17 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
-align  (37): default 4, field 31, stored 2
-    31× field: layout.align
-    2× stored: layout.align: the part fills the box, so a layout round it has one child and nothing to arrange
-    1× default: the page is not a part; its bands are placed by box
+page_tokens (Tokens, /tokens, after pressing "Tokens"): 112 elements → 79 parts
+  elements by kind: {"page":2,"box":36,"words":21,"button":2,"picture":2,"icon":16,"stroke":31,"heading":2}
+  parts by feature: {"box":36,"drawn-icon":16,"value-prop":2,"prose":21,"cta-primary":2,"picture":2}
+  parts carrying a box field: {"layout":25,"pad":15,"edge":7,"text":13}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 9 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
-bg  (15): field 14, nowhere 1
-    11× field: colour.bg and colour.surface
-    2× field: look.palette.bg
-    1× field: colour.accent: a solid button is filled with its accent
-    1× nowhere: oklab() is not a colour the document reads (parseColor: #hex, rgb, oklch; alpha dropped)
+page_nfts (NFTs, /nfts, after pressing "NFTs"): 113 elements → 84 parts
+  elements by kind: {"page":2,"box":37,"words":25,"button":2,"picture":3,"icon":15,"stroke":27,"heading":2}
+  parts by feature: {"box":37,"value-prop":2,"prose":25,"picture":3,"drawn-icon":15,"cta-primary":2}
+  parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":19}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 14 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
+
+page_cnfts (cNFTs, /cnfts, after pressing "cNFTs"): 113 elements → 84 parts
+  elements by kind: {"page":2,"box":37,"words":25,"button":2,"picture":3,"icon":15,"stroke":27,"heading":2}
+  parts by feature: {"box":37,"value-prop":2,"prose":25,"picture":3,"drawn-icon":15,"cta-primary":2}
+  parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":19}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 14 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
+
+page_domains (Domains, /domains, after pressing "Domains"): 110 elements → 79 parts
+  elements by kind: {"page":2,"box":36,"words":21,"button":2,"picture":2,"icon":16,"stroke":29,"heading":2}
+  parts by feature: {"box":36,"drawn-icon":16,"value-prop":2,"prose":21,"cta-primary":2,"picture":2}
+  parts carrying a box field: {"layout":25,"pad":15,"edge":7,"text":13}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 9 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
+
+page_lp (LP, /lp, after pressing "LP"): 113 elements → 84 parts
+  elements by kind: {"page":2,"box":37,"words":25,"button":2,"picture":3,"icon":15,"stroke":27,"heading":2}
+  parts by feature: {"box":37,"value-prop":2,"prose":25,"picture":3,"drawn-icon":15,"cta-primary":2}
+  parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":19}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 14 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
+
+page_unknown (Unknown, /unknown, after pressing "Unknown"): 111 elements → 82 parts
+  elements by kind: {"page":2,"box":37,"words":23,"button":2,"picture":3,"icon":15,"stroke":27,"heading":2}
+  parts by feature: {"box":37,"value-prop":2,"prose":23,"picture":3,"drawn-icon":15,"cta-primary":2}
+  parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":17}
+  links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  paint order: 12 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+  overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
+
+page_docs (Documentation, /docs): 84 elements → 79 parts
+  elements by kind: {"page":2,"box":34,"icon":2,"stroke":3,"words":37,"button":2,"heading":4}
+  parts by feature: {"box":34,"drawn-icon":2,"prose":37,"cta-primary":2,"value-prop":4}
+  parts carrying a box field: {"layout":7,"pad":25,"edge":4,"text":21}
+  links: {"page:page_home":2}
+  paint order: 77 parts that flow, then 2 positioned bands: svg (absolute, z auto, 1 parts), kbd (absolute, z auto, 1 parts)
+  overlaps in the measured geometry: 0 — 0 a positioned band over what flows beneath it, 0 a child poking out of its own parent
+
+faces: Press Start 2P 400 carried (5KB); generic keywords, the machine's own face: ui-monospace, monospace
+
+WHERE EACH CAPTURED PROPERTY WENT (all pages)
+
+(sidebar)  (64): stored 64
+    8× stored: link (page page_home): "Creator Hub" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_cleanup): "Cleanup" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_tokens): "Tokens" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_nfts): "NFTs" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_cnfts): "cNFTs" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_domains): "Domains" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_lp): "LP" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+    8× stored: link (page page_unknown): "Unknown" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled
+
+align  (232): default 24, field 197, stored 11
+    197× field: layout.align
+    11× stored: layout.align: the part fills the box, so a layout round it has one child and nothing to arrange
+    9× default: the page is not a part; its bands are placed by box
+
+bg  (90): field 88, nowhere 2
+    60× field: colour.bg and colour.surface
+    18× field: look.palette.bg
+    9× field: colour.accent: a solid button is filled with its accent
+    2× nowhere: oklab() is not a colour the document reads (parseColor: #hex, rgb, oklch; alpha dropped)
+    1× field: colour.bg
 
 bodyBg  (1): field 1
     1× field: look.palette.bg; palette.mode from its lightness
@@ -48,162 +104,227 @@ bodyBg  (1): field 1
 bodyColor  (1): field 1
     1× field: look.palette.text
 
-border  (22): field 22
-    14× field: edge {width 1.11111, style solid, colour}
-    8× field: colour: colour.accent (the part draws its edge in the accent); width 1.11px and style "solid" stay off — the button draws its own 2px edge, and an edge on the node would draw a second round it
+border  (91): field 91
+    66× field: edge {width 1, style solid, colour}
+    15× field: colour: colour.accent (the part draws its edge in the accent); width 1px and style "solid" stay off — the button draws its own 2px edge, and an edge on the node would draw a second round it
+    8× field: colour: colour.accent (the part draws its edge in the accent); width 2px and style "solid" stay off — the button draws its own 2px edge, and an edge on the node would draw a second round it
+    2× field: edge {width 1, style solid, colour}; the colour is not one the document reads, so the edge takes the site's line colour
 
 capturedAt  (1): field 1
     1× field: from.at on every part
 
-color  (88): field 41, stored 8, n/a 2, folded 37
-    41× field: colour.text
-    8× stored: colour.text; the button draws its words in the accent, or in the accent's contrast colour
-    4× folded: the icon's colour.accent (body > div > main > div > div:nth-of-type(4) > div:nth-of-type(1) > div > button > svg)
-    3× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(3) > svg)
-    3× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(4) > svg)
-    2× n/a: a text property on a picture
-    2× folded: the icon's colour.accent (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
-    2× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(5) > svg)
+color  (545): field 260, stored 25, n/a 20, folded 240
+    260× field: colour.text
+    32× folded: the icon's colour.text (body > div > aside > nav > button:nth-of-type(3) > svg): drawn-icon draws its paths in the text role
+    32× folded: the icon's colour.text (body > div > aside > nav > button:nth-of-type(5) > svg): drawn-icon draws its paths in the text role
+    25× stored: colour.text; the button draws its words in the accent, or in the accent's contrast colour — not in this
+    24× folded: the icon's colour.text (body > div > aside > nav > button:nth-of-type(4) > svg): drawn-icon draws its paths in the text role
+    20× n/a: a text property on a picture
+    16× folded: the icon's colour.text (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg): drawn-icon draws its paths in the text role
+    16× folded: the icon's colour.text (body > div > aside > nav > button:nth-of-type(6) > svg): drawn-icon draws its paths in the text role
 
 cols  (1): field 1
     1× field: layout.columns
 
-dir  (37): nowhere 1, field 34, stored 2
-    34× field: layout.direction
-    2× stored: layout.direction: the part fills the box, so a layout round it has one child and nothing to arrange
-    1× nowhere: the page is not a part; its bands are placed by box
+d  (240): folded 240
+    32× folded: vector.paths[].d, as captured (body > div > aside > nav > button:nth-of-type(3) > svg)
+    32× folded: vector.paths[].d, as captured (body > div > aside > nav > button:nth-of-type(5) > svg)
+    24× folded: vector.paths[].d, as captured (body > div > aside > nav > button:nth-of-type(4) > svg)
+    16× folded: vector.paths[].d, as captured (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    16× folded: vector.paths[].d, as captured (body > div > aside > nav > button:nth-of-type(6) > svg)
+    16× folded: vector.paths[].d, as captured (body > div > aside > nav > button:nth-of-type(8) > svg)
+    16× folded: vector.paths[].d, as captured (body > div > footer > div > div:nth-of-type(1) > a > svg)
+    8× folded: vector.paths[].d, as captured (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(2) > button > svg:nth-of-type(1))
 
-disp  (37): nowhere 1, field 34, stored 2
-    34× field: layout.display
-    2× stored: layout.display: the part fills the box, so a layout round it has one child and nothing to arrange
-    1× nowhere: the page is not a part; its bands are placed by box
+dir  (232): nowhere 9, field 212, stored 11
+    212× field: layout.direction
+    11× stored: layout.direction: the part fills the box, so a layout round it has one child and nothing to arrange
+    9× nowhere: the page is not a part; its bands are placed by box
 
-ff  (88): field 49, n/a 39
-    42× field: font.family "monospace"; the name travels, a web font's file does not
-    37× n/a: a text property on a stroke
-    7× field: font.face "Press Start 2P"; the name travels, a web font's file does not
-    2× n/a: a text property on a picture
+disp  (232): nowhere 9, field 212, stored 11
+    212× field: layout.display
+    11× stored: layout.display: the part fills the box, so a layout round it has one child and nothing to arrange
+    9× nowhere: the page is not a part; its bands are placed by box
+
+ff  (544): field 284, n/a 260
+    240× n/a: a text property on a stroke
+    224× field: font.family "monospace"; "ui-monospace" is a generic keyword, the machine's own face, which cannot be carried
+    59× field: font.face "Press Start 2P"; the face is carried in look.fonts when its file is
+    20× n/a: a text property on a picture
+    1× field: font.family "monospace"; "monospace" is a generic keyword, the machine's own face, which cannot be carried
+
+fill  (240): folded 240
+    240× folded: with stroke, above
 
 font  (1): field 1
     1× field: type.bodyFamily and type.headingFamily as the class "monospace"; the stack itself has no field
 
-fs  (88): field 49, n/a 39
-    37× n/a: a text property on a stroke
-    21× field: font.size 0.88 × base 16 = 14px
-    15× field: font.size 0.75 × base 16 = 12px
-    4× field: font.size 1.5 × base 16 = 24px
-    4× field: font.size 1 × base 16 = 16px
-    3× field: font.size 0.78 × base 16 × the part's own 1.6 = 20px
-    2× n/a: a text property on a picture
-    1× field: font.size 1.25 × base 16 = 20px
+fs  (544): field 284, n/a 260
+    240× n/a: a text property on a stroke
+    121× field: font.size 0.88 × base 16 = 14px
+    89× field: font.size 0.75 × base 16 = 12px
+    28× field: font.size 1 × base 16 = 16px
+    20× n/a: a text property on a picture
+    8× field: font.size 1.25 × base 16 = 20px
+    8× field: font.size 0.63 × base 16 = 10px
+    7× field: font.size 1.17 × base 16 × the part's own 1.6 = 30px
 
-fw  (88): field 38, stored 11, n/a 39
-    38× field: font.weight
-    37× n/a: a text property on a stroke
-    8× stored: font.weight; cta-primary sets its own weight (700)
-    3× stored: font.weight; value-prop sets its own weight (700)
-    2× n/a: a text property on a picture
+fw  (544): field 237, stored 47, n/a 260
+    240× n/a: a text property on a stroke
+    237× field: font.weight
+    25× stored: font.weight; cta-primary sets its own weight (700)
+    22× stored: font.weight; value-prop sets its own weight (700)
+    20× n/a: a text property on a picture
 
-gap  (37): default 18, field 19
-    19× field: layout.gap
-    1× default: the page is not a part; its bands are placed by box
+gap  (232): default 96, field 134, stored 2
+    134× field: layout.gap
+    9× default: the page is not a part; its bands are placed by box
+    2× stored: layout.gap: the part fills the box, so a layout round it has one child and nothing to arrange
 
-h  (165): nowhere 39, field 126
-    126× field: h
-    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
-    2× nowhere: the frame's height is derived from the lowest part, never stored
+h  (1042): nowhere 18, field 784, folded 240
+    784× field: h
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(3) > svg)
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(5) > svg)
+    24× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(4) > svg)
+    18× nowhere: the frame's height is derived from the lowest part, never stored
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(6) > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(8) > svg)
 
-href  (3): stored 3
-    2× stored: link (url); box is not a linkable part, so the link is written but not pressed
-    1× stored: link (url); prose is not a linkable part, so the link is written but not pressed
+href  (22): stored 18, field 1, nowhere 3
+    16× stored: link (page page_docs): /docs is a route of the site, captured as a page of the document; box is not a linkable part, so the link is written but not pressed
+    3× nowhere: an anchor on the page itself; it goes nowhere
+    1× stored: link (url): an address off the site; prose is not a linkable part, so the link is written but not pressed
+    1× stored: link (page page_home): / is a route of the site, captured as a page of the document; box is not a linkable part, so the link is written but not pressed
+    1× field: link (page page_home): / is a route of the site, captured as a page of the document
 
-ins  (6): nowhere 4, default 2
-    4× nowhere: the inset that placed it; its box already carries the result
+ins  (54): nowhere 37, default 17
+    37× nowhere: the inset that placed it; its box already carries the result
 
-just  (37): default 22, field 13, stored 2
-    13× field: layout.justify
-    2× stored: layout.justify: the part fills the box, so a layout round it has one child and nothing to arrange
-    1× default: the page is not a part; its bands are placed by box
+JetBrains Mono  (1): default 1
+    1× default: declared by the page but no captured element is set in it, so it is not carried
 
-lh  (88): field 46, n/a 39, stored 3
-    37× n/a: a text property on a stroke
-    21× field: font.leading 1.43 (20/14)
-    15× field: font.leading 1.33 (16/12)
-    4× field: font.leading 1.33 (32/24)
-    4× field: font.leading 1.5 (24/16)
-    3× stored: font.leading; value-prop sets its own line height (1.2)
-    2× n/a: a text property on a picture
-    1× field: font.leading 1.4 (28/20)
+just  (232): default 162, field 61, stored 9
+    61× field: layout.justify
+    9× default: the page is not a part; its bands are placed by box
+    9× stored: layout.justify: the part fills the box, so a layout round it has one child and nothing to arrange
 
-ls  (88): field 2, default 47, n/a 39
-    37× n/a: a text property on a stroke
-    2× n/a: a text property on a picture
-    1× field: font.spacing 0.05em
-    1× field: font.spacing 0.025em
+lh  (544): field 262, n/a 260, stored 22
+    240× n/a: a text property on a stroke
+    121× field: font.leading 1.43 (20/14)
+    89× field: font.leading 1.33 (16/12)
+    25× field: font.leading 1.5 (24/16)
+    22× stored: font.leading; value-prop sets its own line height (1.2)
+    20× n/a: a text property on a picture
+    8× field: font.leading 1.4 (28/20)
+    8× field: font.leading 1.5 (15/10)
 
-mar  (22): nowhere 22
-    22× nowhere: a node has no margin field; the box already stands where the margin put it
+ls  (544): field 20, default 264, n/a 260
+    240× n/a: a text property on a stroke
+    20× n/a: a text property on a picture
+    12× field: font.spacing 0.05em
+    8× field: font.spacing 0.025em
 
-maxw  (4): nowhere 2, default 2
-    2× nowhere: a node has a size, not a constraint on one
+mar  (165): nowhere 165
+    165× nowhere: a node has no margin field; the box already stands where the margin put it
 
-minh  (75): nowhere 1, default 74
-    1× nowhere: the page's height is derived
+maxw  (38): nowhere 18, default 20
+    18× nowhere: a node has a size, not a constraint on one
 
-pad  (29): field 22, nowhere 7
-    8× field: pad {12, 16, 12, 16}; the theme is set tight so the part adds no padding of its own
-    7× field: pad {16, 16, 16, 16}; the theme is set tight so the part adds no padding of its own
-    7× nowhere: the button pads its own words inside its own edge; padding on the node would shrink the button inside the measured box
-    3× field: pad {24, 24, 24, 24}; the theme is set tight so the part adds no padding of its own
-    2× field: pad {48, 0, 48, 0}; the theme is set tight so the part adds no padding of its own
-    1× field: pad {8, 12, 8, 12}; the theme is set tight so the part adds no padding of its own
-    1× field: pad {8, 8, 8, 8}; the theme is set tight so the part adds no padding of its own
+minh  (442): nowhere 9, default 433
+    9× nowhere: the page's height is derived
 
-page[0]  (1): field 1
-    1× field: frameWidth (the same number)
+monospace  (1): nowhere 1
+    1× nowhere: a generic keyword: the machine's own face, a different face on a different machine, and it cannot be carried — every box set in it was measured in this machine's
+
+pad  (170): field 153, nowhere 17
+    64× field: pad {12, 16, 12, 16}; the theme is set tight so the part adds no padding of its own
+    31× field: pad {16, 16, 16, 16}; the theme is set tight so the part adds no padding of its own
+    20× field: pad {8, 12, 8, 12}; the theme is set tight so the part adds no padding of its own
+    17× nowhere: the button pads its own words inside its own edge; padding on the node would shrink the button inside the measured box
+    13× field: pad {32, 32, 32, 32}; the theme is set tight so the part adds no padding of its own
+    8× field: pad {24, 24, 24, 24}; the theme is set tight so the part adds no padding of its own
+    5× field: pad {48, 0, 48, 0}; the theme is set tight so the part adds no padding of its own
+    4× field: pad {32, 0, 32, 0}; the theme is set tight so the part adds no padding of its own
 
 page[1]  (1): nowhere 1
     1× nowhere: the frame's height is derived from the lowest part
 
-pos  (6): field 4, default 2
-    3× field: fixed: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
-    2× default: relative with no offset
-    1× field: absolute: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
+pages  (1): field 1
+    1× field: 9 pages, read from the site's source (routes.json)
 
-src  (2): field 2
-    1× field: node.picture: a reference to assets/pictures/pic_cc8659c3.png (316593 bytes, 1024×1024), the bytes committed beside the document; the address itself is kept in data as words only
-    1× field: node.picture: a reference to assets/pictures/pic_ebf39fa1.png (56390 bytes, 706×353), the bytes committed beside the document; the address itself is kept in data as words only
+pos  (54): field 37, default 17
+    24× field: fixed: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
+    17× default: relative with no offset
+    10× field: absolute: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
+    3× field: sticky: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
 
-t  (165): field 165
-    54× field: the tag picks the part (box) and is kept in from.selector
-    38× field: the tag picks the part (words) and is kept in from.selector
-    37× field: the tag picks the part (stroke) and is kept in from.selector
-    21× field: the tag picks the part (icon) and is kept in from.selector
-    8× field: the tag picks the part (button) and is kept in from.selector
-    3× field: the tag picks the part (heading) and is kept in from.selector
-    2× field: the tag picks the part (page) and is kept in from.selector
-    2× field: the tag picks the part (picture) and is kept in from.selector
+Press Start 2P  (1): field 1
+    1× field: look.fonts: font:press-start-2p:400:normal, 5KB as data; the page's own file, carried as the page serves it; its licence is the page's
 
-ta  (88): default 27, field 22, n/a 39
-    37× n/a: a text property on a stroke
-    8× field: text.align center; the button centres its one line whatever is said
-    8× field: text.align left
-    6× field: text.align center
-    2× n/a: a text property on a picture
+src  (20): field 20
+    8× field: node.picture: a reference to assets/pictures/pic_cc8659c3.png (316593 bytes, 1024×1024), the bytes committed beside the document; the address itself is kept in data as words only
+    8× field: node.picture: a reference to assets/pictures/pic_ebf39fa1.png (56390 bytes, 706×353), the bytes committed beside the document; the address itself is kept in data as words only
+    4× field: node.picture: a reference to assets/pictures/pic_95e3b0fe.png (6580 bytes, 480×480), the bytes committed beside the document; the address itself is kept in data as words only
 
-text  (49): field 49
-    49× field: content
+stroke  (240): folded 240
+    32× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > aside > nav > button:nth-of-type(3) > svg)
+    32× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > aside > nav > button:nth-of-type(5) > svg)
+    24× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > aside > nav > button:nth-of-type(4) > svg)
+    16× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    16× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > aside > nav > button:nth-of-type(6) > svg)
+    16× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > aside > nav > button:nth-of-type(8) > svg)
+    16× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > footer > div > div:nth-of-type(1) > a > svg)
+    8× folded: the icon's "drawn as" option: an outline when the stroke is painted, a fill when only the fill is (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(2) > button > svg:nth-of-type(1))
 
-title  (1): field 1
-    1× field: brief.name and pages[0].name
+sw  (240): nowhere 240
+    240× nowhere: drawn-icon draws every outline at 2 units; the measured stroke width is not kept
 
-tt  (88): default 48, field 1, n/a 39
-    37× n/a: a text property on a stroke
-    2× n/a: a text property on a picture
-    1× field: text.transform uppercase
+t  (1042): field 1042
+    348× field: the tag picks the part (box) and is kept in from.selector
+    240× field: the tag picks the part (stroke) and is kept in from.selector
+    237× field: the tag picks the part (words) and is kept in from.selector
+    132× field: the tag picks the part (icon) and is kept in from.selector
+    25× field: the tag picks the part (button) and is kept in from.selector
+    22× field: the tag picks the part (heading) and is kept in from.selector
+    20× field: the tag picks the part (picture) and is kept in from.selector
+    18× field: the tag picks the part (page) and is kept in from.selector
+
+ta  (545): default 136, field 149, n/a 260
+    240× n/a: a text property on a stroke
+    76× field: text.align left
+    49× field: text.align center
+    23× field: text.align center; the button centres its one line whatever is said
+    20× n/a: a text property on a picture
+    1× field: text.align left; the button centres its one line whatever is said
+
+text  (284): field 284
+    284× field: content
+
+title  (41): nowhere 40, field 1
+    16× nowhere: "Documentation" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
+    8× nowhere: "Live Burn Feed" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
+    8× nowhere: "Creator Hub" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
+    8× nowhere: "FAQ" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
+    1× field: brief.name
+
+tt  (545): default 273, field 12, n/a 260
+    240× n/a: a text property on a stroke
+    20× n/a: a text property on a picture
+    12× field: text.transform uppercase
+
+ui-monospace  (1): nowhere 1
+    1× nowhere: a generic keyword: the machine's own face, a different face on a different machine, and it cannot be carried — every box set in it was measured in this machine's
 
 url  (1): field 1
-    1× field: from.url on every part; pages[0].path
+    1× field: from.url on every part; pages[].path from routes.json
+
+vb  (132): field 132
+    60× field: vector.viewBox; 1 stroke as vector.paths, drawn by drawn-icon as outlines
+    38× field: vector.viewBox; 2 strokes as vector.paths, drawn by drawn-icon as outlines
+    18× field: vector.viewBox; 4 strokes as vector.paths, drawn by drawn-icon as outlines
+    8× field: vector.viewBox; 1 stroke as vector.paths, drawn by drawn-icon as fills
+    8× field: vector.viewBox; 3 strokes as vector.paths, drawn by drawn-icon as outlines
 
 viewport[0]  (1): field 1
     1× field: frameWidth
@@ -211,23 +332,41 @@ viewport[0]  (1): field 1
 viewport[1]  (1): nowhere 1
     1× nowhere: the frame has no viewport height
 
-w  (165): field 128, nowhere 37
-    126× field: w
-    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
-    2× field: the page's own width: frameWidth
+w  (1042): field 802, folded 240
+    784× field: w
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(3) > svg)
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(5) > svg)
+    24× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(4) > svg)
+    18× field: the page's own width: frameWidth
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(6) > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(8) > svg)
 
-wrap  (37): default 37
-    1× default: the page is not a part; its bands are placed by box
+wallet  (1): nowhere 1
+    1× nowhere: a stand-in wallet was connected so the sidebar and its sections would render; the address on the wallet button is the stand-in's, not his
 
-x  (165): default 2, field 126, nowhere 37
-    126× field: x
-    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
-    2× default: the page's own origin
+wrap  (232): default 232
+    9× default: the page is not a part; its bands are placed by box
 
-y  (165): default 2, field 126, nowhere 37
-    126× field: y
-    37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
-    2× default: the page's own origin
+x  (1042): default 18, field 784, folded 240
+    784× field: x
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(3) > svg)
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(5) > svg)
+    24× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(4) > svg)
+    18× default: the page's own origin
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(6) > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(8) > svg)
 
-z  (6): field 2, default 4
-    2× field: the order of the positioned bands in the nodes array; the number itself is not kept
+y  (1042): default 18, field 784, folded 240
+    784× field: y
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(3) > svg)
+    32× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(5) > svg)
+    24× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(4) > svg)
+    18× default: the page's own origin
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(6) > svg)
+    16× folded: vector.paths[].share: how much of the icon's box this stroke covers (body > div > aside > nav > button:nth-of-type(8) > svg)
+
+z  (54): field 18, default 36
+    18× field: the order of the positioned bands in the nodes array; the number itself is not kept

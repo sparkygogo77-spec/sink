@@ -1,0 +1,27 @@
+{
+  "_": "The pages of https://ccc-woad.vercel.app, read from its source (the zip in this repository's history, commit 9bd8288). Next's app router has two routes: app/page.tsx (/) and app/docs/page.tsx (/docs). The eight entries of the sidebar (components/sidebar.tsx, navItems) do not navigate: each calls onSectionChange and app/page.tsx renders that section in place, so each is captured as the page it is on screen, reached by pressing its button inside the aside. The sidebar exists only with a wallet connected (app/page.tsx: `connected && <Sidebar/>`), so those captures use the stand-in wallet. The disclaimer over the page is agreed to first, as it was for the first capture.",
+  "site": "https://ccc-woad.vercel.app",
+  "viewport": [1763, 1427],
+  "pages": [
+    { "id": "page_home", "name": "Creator Hub", "path": "/", "route": "/", "wallet": true, "agree": true, "section": "creator-hub", "note": "the route /, on its opening section" },
+    { "id": "page_cleanup", "name": "Cleanup", "path": "/cleanup", "route": "/", "wallet": true, "agree": true, "section": "cleanup", "click": "Cleanup", "within": "aside" },
+    { "id": "page_tokens", "name": "Tokens", "path": "/tokens", "route": "/", "wallet": true, "agree": true, "section": "tokens", "click": "Tokens", "within": "aside" },
+    { "id": "page_nfts", "name": "NFTs", "path": "/nfts", "route": "/", "wallet": true, "agree": true, "section": "nfts", "click": "NFTs", "within": "aside" },
+    { "id": "page_cnfts", "name": "cNFTs", "path": "/cnfts", "route": "/", "wallet": true, "agree": true, "section": "cnfts", "click": "cNFTs", "within": "aside" },
+    { "id": "page_domains", "name": "Domains", "path": "/domains", "route": "/", "wallet": true, "agree": true, "section": "domains", "click": "Domains", "within": "aside" },
+    { "id": "page_lp", "name": "LP", "path": "/lp", "route": "/", "wallet": true, "agree": true, "section": "lp", "click": "LP", "within": "aside" },
+    { "id": "page_unknown", "name": "Unknown", "path": "/unknown", "route": "/", "wallet": true, "agree": true, "section": "unknown", "click": "Unknown", "within": "aside" },
+    { "id": "page_docs", "name": "Documentation", "path": "/docs", "route": "/docs", "wallet": false, "agree": false, "note": "the route /docs; its own left-hand menu switches its content in place and is not expanded here" }
+  ],
+  "sections": {
+    "_": "sidebar label → the page its button leads to (components/sidebar.tsx navItems)",
+    "Creator Hub": "page_home",
+    "Cleanup": "page_cleanup",
+    "Tokens": "page_tokens",
+    "NFTs": "page_nfts",
+    "cNFTs": "page_cnfts",
+    "Domains": "page_domains",
+    "LP": "page_lp",
+    "Unknown": "page_unknown"
+  }
+}
