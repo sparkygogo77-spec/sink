@@ -17,8 +17,9 @@
  *
  *   node capture-to-document.mjs <capture.json> <out-dir> [--pictures <dir>]
  *
- * Writes <out-dir>/site/document.json and prints the ledger: for every
- * captured property, where it went.
+ * Writes <out-dir>/site/document.json, the pictures under
+ * <out-dir>/assets/pictures, and prints the ledger: for every captured
+ * property, where it went.
  *
  * WHAT A CAPTURED ELEMENT BECOMES. The part is chosen by what the element
  * itself draws — its own words, its picture, or nothing — never by folding
@@ -27,22 +28,42 @@
  * its children where it likes. So:
  *
  *   body, and the wrapper that is the page's own box   → the page's look
- *   svg                                                 → a plain box (icon); its strokes fold into it
+ *   svg                                                 → `box` (an icon); its strokes fold into it
  *   img                                                 → the `picture` part, holding the picture as its own
  *   own text, h1..h6                                    → `value-prop` (a heading)
  *   own text, button or a, painted or edged             → `cta-primary` (a button)
  *   own text, anything else                             → `prose`
- *   no own text                                         → a plain box: `custom-idea`
+ *   no own text                                         → `box`, the plain part that draws nothing of its own
  *
- * A plain box carries what the format lets a part carry of its own —
- * colour roles, type, shape, a link — and nothing else. Padding, borders,
- * flex and grid settings have no field on a node, and go in the ledger.
+ * WHAT A NODE CARRIES OF ITS BOX. Beside colour roles, type, shape and a
+ * link, a node has four optional fields (polio `parts/theme.ts`): `layout`
+ * (display, direction, align, justify, gap, wrap, columns), `pad` (four
+ * sides), `edge` (width, style, colour) and `text` (align, transform). They
+ * are filled from the captured values as recorded, and only where the
+ * value says something: a CSS default is left off, so a node that says
+ * nothing gets its part alone. A button is the one part that draws its own
+ * box — its edge and its padding are the part's — so a button node carries
+ * neither, and the ledger says so. Margins and a stroke's geometry stay
+ * out, as the format keeps them out.
  *
- * Reading order is kept: parts are written in the capture's own order, so
- * the board draws a container first and what it holds on top of it.
+ * NOTHING WRAPS A CONTAINER. A container is a box holding its children by
+ * geometry; there are no groups, because a group is a second object over
+ * the same children that takes every click for the whole section.
+ *
+ * WHAT FIXED MEANS ON A BOARD WITH NO VIEWPORT. The page was captured at
+ * scroll 0, so a fixed element's box is its box on the page, and it keeps
+ * it: nothing is moved, and the overlaps that were measured — a fixed bar
+ * over the top of the column that scrolls beneath it — stay in the
+ * geometry, because they are the page's own. What a fixed or absolute
+ * element loses without a viewport is only its place in the stack, and the
+ * board's stack is the order of the nodes. So the parts that flow are
+ * written first, in the capture's order, and every positioned band (an
+ * element placed fixed or absolute, with everything inside it) is written
+ * after them, lowest z-index first, each band in its own capture order:
+ * painted over what scrolls beneath it, exactly as the browser painted it.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { basename, join, resolve } from "node:path";
+import { basename, join } from "node:path";
 import { createHash } from "node:crypto";
 
 /* ------------------------------------------------------------------ */
@@ -68,15 +89,19 @@ const BASE_PX = 16;
 /** `applyFont` clamps: size 0.6..2, weight 300..800 to the hundred, spacing -0.05..0.3em, leading 1..2 (parts/theme.ts). */
 const CLAMP = { size: [0.6, 2], weight: [300, 800], spacing: [-0.05, 0.3], leading: [1, 2] };
 /** What each part multiplies the base by when it draws its words, so the captured pixels land as captured. */
-const PART_SCALE = { "value-prop": 1.6, "cta-primary": 1, prose: 1, "custom-idea": 1 };
-/** Board hues for groups (store.ts#HUES). */
-const HUES = [265, 200, 160, 30, 340, 90, 240, 15];
+const PART_SCALE = { "value-prop": 1.6, "cta-primary": 1, prose: 1, box: 1 };
 /** The lamp as a new document has it (look.ts#defaultLight). */
 const DEFAULT_LIGHT = { on: false, x: 0.5, y: 0.12, height: 0.55, strength: 0.45, lift: 10, warmth: 80, wash: 0 };
 /** `parseColor` (look.ts) reads `#hex`, `rgb()` / `rgba()` (alpha dropped) and `oklch()`; nothing else. */
 const PARSEABLE = /^(#[0-9a-f]{3,8}|rgba?\(\s*[\d.]+\s*[,\s]\s*[\d.]+\s*[,\s]\s*[\d.]+|oklch\(\s*[\d.]+%?\s+[\d.]+\s+[\d.]+)/i;
 /** Generic family keywords that name no face (siteRead.ts#GENERIC). */
 const GENERIC = /^(serif|sans-serif|monospace|cursive|fantasy|system-ui|ui-sans-serif|ui-serif|ui-monospace|ui-rounded|math|emoji|fangsong|inherit|initial|unset|-apple-system|BlinkMacSystemFont)$/i;
+/** What `NodeLayout`, `NodeEdge` and `NodeText` accept (parts/theme.ts). */
+const DISPLAYS = new Set(["block", "flex", "grid"]);
+const DIRECTIONS = new Set(["row", "column"]);
+const EDGE_STYLES = new Set(["solid", "dashed", "dotted", "double", "none"]);
+const TEXT_ALIGNS = new Set(["start", "left", "center", "end", "right", "justify"]);
+const TEXT_TRANSFORMS = new Set(["none", "uppercase", "lowercase", "capitalize"]);
 
 /** The family the page was set in, as one of the app's own (recreate.ts#familyOf). */
 function familyOf(stack) {
@@ -110,7 +135,6 @@ function light(v) {
   if (!c) return 0;
   return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255;
 }
-
 /** The alpha of any colour string the browser writes, 1 when it has none: `oklab(… / 0.1)`, `rgba(…, 0.5)`. */
 function alphaOf(v) {
   const s = (v ?? "").trim();
@@ -127,9 +151,7 @@ function alphaOf(v) {
 }
 
 const round2 = (n) => Math.round(n * 100) / 100;
-const clamp = (n, [lo, hi]) => Math.max(lo, Math.min(hi, n));
 const cut = (s, n) => (s.length <= n ? s : `${s.slice(0, n - 1).trimEnd()}…`);
-const esc = (s) => s;
 
 /* ------------------------------------------------------------------ */
 /* The ledger: where every captured property went                       */
@@ -178,7 +200,7 @@ const all = [];
   all.push(el);
   for (const k of el.kids) walk(k, el, depth + 1);
 })(cap.tree, null, 0);
-for (const el of all) el.sel = selectorOf(el);
+all.forEach((el, i) => { el.sel = selectorOf(el); el.order = i; });
 
 const STROKE_TAGS = new Set(["path", "polyline", "polygon", "line", "circle", "ellipse", "rect", "g", "use"]);
 const isPageBox = (el) => el.x === 0 && el.y === 0 && el.w === page.w && el.h === page.h;
@@ -200,13 +222,26 @@ function classify(el) {
 }
 for (const el of all) el.kind = classify(el);
 
-const FEATURE = { icon: "custom-idea", picture: "picture", heading: "value-prop", button: "cta-primary", words: "prose", box: "custom-idea" };
+const FEATURE = { icon: "box", picture: "picture", heading: "value-prop", button: "cta-primary", words: "prose", box: "box" };
+
+/**
+ * The positioned band an element paints in: the outermost ancestor, itself
+ * included, placed fixed or absolute — or none, for what flows. The page's
+ * own box is not a band: it is the page.
+ */
+const positioned = (el) => el.pos === "fixed" || el.pos === "absolute";
+function bandOf(el) {
+  let band = null;
+  for (let n = el; n && n.kind !== "page"; n = n.parent) if (positioned(n)) band = n;
+  return band;
+}
+const zOf = (el) => (el?.z && el.z !== "auto" ? Number(el.z) || 0 : 0);
 
 /* ------------------------------------------------------------------ */
 /* Readings: the typed fields a captured element gives a node           */
 /* ------------------------------------------------------------------ */
 
-/** "1.11111px solid rgb(45, 55, 72)" → its three parts. */
+/** "1.11111px solid rgb(45, 55, 72)" → its three parts, the width as measured. */
 function borderOf(s) {
   const m = /^([\d.]+)px\s+(\w+)\s+(.+)$/.exec(s ?? "");
   return m ? { width: Number(m[1]), style: m[2], colour: m[3].trim() } : null;
@@ -228,6 +263,57 @@ function fontOf(el, featureId) {
   }
   if (el.lh > 0 && el.fs > 0) f.leading = round2(el.lh / el.fs);
   return f;
+}
+
+const DEFAULT_OF = {
+  ls: (v) => v === "normal",
+  tt: (v) => v === "none",
+  ta: (v) => v === "start",
+  minh: (v) => v === "auto",
+  maxw: (v) => v === "none" || v === "100%",
+  gap: (v) => v === "normal",
+  just: (v) => v === "normal",
+  align: (v) => v === "normal",
+  wrap: (v) => v === "nowrap",
+  z: (v) => v === "auto",
+};
+
+/**
+ * The layout the capture recorded, as `NodeLayout` (parts/theme.ts).
+ *
+ * Only what the page said: `disp` is written when it was flex or grid (a
+ * block says nothing a box does not); `dir` when it was recorded; `gap`,
+ * `just`, `align` when not their `normal` default; `wrap` when it wraps;
+ * `cols` as the count of tracks the grid was measured with. Each value is
+ * passed as the browser reported it, never reinterpreted.
+ */
+function layoutOf(el) {
+  const l = {};
+  if (el.disp && DISPLAYS.has(el.disp) && el.disp !== "block") l.display = el.disp;
+  if (el.dir && DIRECTIONS.has(el.dir)) l.direction = el.dir;
+  if (el.align && !DEFAULT_OF.align(el.align)) l.align = el.align;
+  if (el.just && !DEFAULT_OF.just(el.just)) l.justify = el.just;
+  if (el.gap && !DEFAULT_OF.gap(el.gap)) { const px = parseFloat(el.gap); if (Number.isFinite(px)) l.gap = px; }
+  if (el.wrap && !DEFAULT_OF.wrap(el.wrap)) l.wrap = true;
+  if (el.cols && el.disp === "grid") { const n = el.cols.trim().split(/\s+/).length; if (n > 0) l.columns = n; }
+  return Object.keys(l).length ? l : null;
+}
+/** `pad: [top, right, bottom, left]` → `NodePad`. */
+const padOf = (el) => (Array.isArray(el.pad) && el.pad.length === 4 ? { top: el.pad[0], right: el.pad[1], bottom: el.pad[2], left: el.pad[3] } : null);
+/** The border as measured → `NodeEdge`: the width unrounded, the style as said, the colour as said. */
+function edgeOf(border) {
+  if (!border) return null;
+  const e = { width: border.width };
+  if (EDGE_STYLES.has(border.style)) e.style = border.style;
+  if (PARSEABLE.test(border.colour)) e.colour = border.colour;
+  return e;
+}
+/** `ta`, `tt` → `NodeText`, when not their defaults. */
+function textOf(el) {
+  const x = {};
+  if (el.ta && !DEFAULT_OF.ta(el.ta) && TEXT_ALIGNS.has(el.ta)) x.align = el.ta;
+  if (el.tt && !DEFAULT_OF.tt(el.tt) && TEXT_TRANSFORMS.has(el.tt)) x.transform = el.tt;
+  return Object.keys(x).length ? x : null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -277,37 +363,12 @@ function pictureFor(src) {
 /* ------------------------------------------------------------------ */
 
 const PAGE_ID = "page_home";
-const nodes = [];
-const groups = [];
-const groupOf = new Map();
-
-/** A group per band of the page: the children of the page's own box. */
-for (const el of all) {
-  if (el.kind !== "page" || el.t === "body") continue;
-  el.kids.forEach((band, i) => {
-    const g = { id: `g_${band.t}_${i + 1}`, pageId: PAGE_ID, label: band.t, prompt: "", hue: HUES[i % HUES.length] };
-    groups.push(g);
-    (function mark(n) { groupOf.set(n, g.id); for (const k of n.kids) mark(k); })(band);
-  });
-}
-
-const DEFAULT_OF = {
-  ls: (v) => v === "normal",
-  tt: (v) => v === "none",
-  ta: (v) => v === "start",
-  minh: (v) => v === "auto",
-  maxw: (v) => v === "none" || v === "100%",
-  gap: (v) => v === "normal",
-  just: (v) => v === "normal",
-  align: (v) => v === "normal",
-  wrap: (v) => v === "nowrap",
-  z: (v) => v === "auto",
-};
+const made = [];
 
 const TEXT_PROPS = ["color", "fs", "fw", "ff", "lh", "ls", "ta", "tt"];
 const LAYOUT_PROPS = ["disp", "dir", "gap", "just", "align", "wrap", "cols"];
+const LAYOUT_FIELD = { disp: "display", dir: "direction", gap: "gap", just: "justify", align: "align", wrap: "wrap", cols: "columns" };
 
-let index = 0;
 for (const el of all) {
   const { sel, kind } = el;
   note(sel, "t", "field", `the tag picks the part (${kind}) and is kept in from.selector`);
@@ -317,7 +378,7 @@ for (const el of all) {
     note(sel, "w", "field", "the page's own width: frameWidth");
     note(sel, "h", "nowhere", "the frame's height is derived from the lowest part, never stored");
     if (el.bg) note(sel, "bg", "field", "look.palette.bg");
-    for (const p of LAYOUT_PROPS) if (p in el) note(sel, p, DEFAULT_OF[p]?.(el[p]) ? "default" : "nowhere", "the page has no layout field; parts are placed by box");
+    for (const p of LAYOUT_PROPS) if (p in el) note(sel, p, DEFAULT_OF[p]?.(el[p]) ? "default" : "nowhere", "the page is not a part; its bands are placed by box");
     if ("minh" in el) note(sel, "minh", DEFAULT_OF.minh(el.minh) ? "default" : "nowhere", "the page's height is derived");
     continue;
   }
@@ -331,9 +392,8 @@ for (const el of all) {
   }
 
   const featureId = FEATURE[kind];
-  index += 1;
-  const id = `n_${featureId.replace(/-/g, "")}_${index}`;
   const words = (el.text ?? "").trim();
+  const drawsOwnBox = kind === "button";
 
   /* Words. */
   let content = "";
@@ -348,7 +408,7 @@ for (const el of all) {
       if (kind === "button" && alphaOf(el.bg) >= 1) { colour.accent = el.bg; note(sel, "bg", "field", "colour.accent: a solid button is filled with its accent"); }
       else if (kind === "button") { note(sel, "bg", "nowhere", `a see-through fill (alpha ${alphaOf(el.bg)}): the ghost button paints its accent at 13% instead`); }
       else if (kind === "box") {
-        // A plain box is a card, and a card paints its surface: said outright, so the card is the captured colour and not a shade derived from the ground (parts/theme.ts#overrideTheme).
+        // A box paints its colour through the fill; surface is set beside it so a card-styled reading of the node agrees (parts/theme.ts#overrideTheme).
         colour.bg = el.bg; colour.surface = el.bg;
         note(sel, "bg", "field", "colour.bg and colour.surface");
       }
@@ -372,18 +432,41 @@ for (const el of all) {
     el.strokes = strokes;
     el.inks = inks;
   }
+
+  /* The box: layout, padding, edge, text (parts/theme.ts#NodeBox). */
+  const layout = layoutOf(el);
+  const pad = drawsOwnBox ? null : padOf(el);
+  const edge = drawsOwnBox ? null : edgeOf(border);
+  const text = textOf(el);
+
   if (border) {
     if (kind === "button") {
       if (!colour.accent && PARSEABLE.test(border.colour)) colour.accent = border.colour;
-      note(sel, "border", colour.accent === border.colour ? "field" : "stored", `colour: colour.accent (the part draws its edge in the accent); width ${round2(border.width)}px and style "${border.style}" have no field — the part draws 2px`);
+      note(sel, "border", colour.accent === border.colour ? "field" : "stored", `colour: colour.accent (the part draws its edge in the accent); width ${round2(border.width)}px and style "${border.style}" stay off — the button draws its own 2px edge, and an edge on the node would draw a second round it`);
     } else {
-      // colourFrom keeps a chromatic edge as the accent on any part; the part does not draw an edge in it.
-      if (!colour.accent && chroma(border.colour) > 0.12 && border.colour !== colour.bg && PARSEABLE.test(border.colour)) colour.accent = border.colour;
-      note(sel, "border", colour.accent === border.colour ? "stored" : "nowhere", colour.accent === border.colour ? "colour.accent, which this part does not draw as an edge; width and style have no field" : "a node has no border field");
+      note(sel, "border", "field", `edge {width ${border.width}, style ${border.style}, colour}${edge && !edge.colour ? "; the colour is not one the document reads, so the edge takes the site's line colour" : ""}`);
     }
   }
   // The most coloured thing in it, when nothing above claimed the accent (recreate.ts#colourFrom).
   if (!colour.accent && el.bg && chroma(el.bg) > 0.12 && kind !== "button" && PARSEABLE.test(el.bg)) colour.accent = el.bg;
+
+  for (const p of LAYOUT_PROPS) {
+    if (!(p in el)) continue;
+    if (DEFAULT_OF[p]?.(el[p])) { note(sel, p, "default", ""); continue; }
+    if (p === "disp" && el.disp === "block") { note(sel, p, "default", "a block says nothing a box does not"); continue; }
+    if (p === "cols" && el.disp !== "grid") { note(sel, p, "nowhere", "tracks on something that is not a grid"); continue; }
+    if (layout && LAYOUT_FIELD[p] in layout) {
+      // A wrapper laid out flex round a part that fills it moves nothing: the part is the one child and it is the whole box.
+      const seen = kind === "box";
+      note(sel, p, seen ? "field" : "stored", `layout.${LAYOUT_FIELD[p]}${seen ? "" : ": the part fills the box, so a layout round it has one child and nothing to arrange"}`);
+    } else note(sel, p, "nowhere", "not a value NodeLayout takes");
+  }
+  if (el.pad) {
+    if (drawsOwnBox) note(sel, "pad", "nowhere", "the button pads its own words inside its own edge; padding on the node would shrink the button inside the measured box");
+    else note(sel, "pad", "field", `pad {${el.pad.join(", ")}}; the theme is set tight so the part adds no padding of its own`);
+  }
+  if ("ta" in el && kind !== "picture") note(sel, "ta", DEFAULT_OF.ta(el.ta) ? "default" : text?.align ? "field" : "nowhere", DEFAULT_OF.ta(el.ta) ? "" : text?.align ? `text.align ${el.ta}${kind === "button" ? "; the button centres its one line whatever is said" : ""}` : "not a value NodeText takes");
+  if ("tt" in el && kind !== "picture") note(sel, "tt", DEFAULT_OF.tt(el.tt) ? "default" : text?.transform ? "field" : "nowhere", DEFAULT_OF.tt(el.tt) ? "" : text?.transform ? `text.transform ${el.tt}` : "not a value NodeText takes");
 
   /* Type. */
   let font = null;
@@ -393,11 +476,9 @@ for (const el of all) {
     const drawsLeading = kind !== "heading";
     note(sel, "fs", "field", `font.size ${font.size} × base ${BASE_PX}${PART_SCALE[featureId] !== 1 ? ` × the part's own ${PART_SCALE[featureId]}` : ""} = ${el.fs}px`);
     if ("fw" in el) note(sel, "fw", drawsWeight ? (font.weight > CLAMP.weight[1] ? "stored" : "field") : "stored", drawsWeight ? (font.weight > CLAMP.weight[1] ? `font.weight; the theme clamps it to ${CLAMP.weight[1]}` : "font.weight") : `font.weight; ${featureId} sets its own weight (700)`);
-    if ("ff" in el) note(sel, "ff", "field", `font.${font.face ? `face "${font.face}"` : ""}${font.face && font.family ? " and " : ""}${font.family ? `family "${font.family}"` : ""}${!font.face && !font.family ? "" : ""}; the name travels, a web font's file does not`);
+    if ("ff" in el) note(sel, "ff", "field", `font.${font.face ? `face "${font.face}"` : ""}${font.face && font.family ? " and " : ""}${font.family ? `family "${font.family}"` : ""}; the name travels, a web font's file does not`);
     if ("lh" in el) note(sel, "lh", drawsLeading ? "field" : "stored", drawsLeading ? `font.leading ${font.leading} (${el.lh}/${el.fs})` : `font.leading; ${featureId} sets its own line height (1.2)`);
     if ("ls" in el) note(sel, "ls", DEFAULT_OF.ls(el.ls) ? "default" : font.spacing !== undefined ? "field" : "nowhere", DEFAULT_OF.ls(el.ls) ? "" : font.spacing !== undefined ? `font.spacing ${font.spacing}em` : "under the 0.005em the reading keeps");
-    if ("ta" in el) note(sel, "ta", DEFAULT_OF.ta(el.ta) ? "default" : "nowhere", DEFAULT_OF.ta(el.ta) ? "" : "alignment is a site-wide format value (type.align), not a part's own");
-    if ("tt" in el) note(sel, "tt", DEFAULT_OF.tt(el.tt) ? "default" : "nowhere", DEFAULT_OF.tt(el.tt) ? "" : "no node field for text-transform; heading case is site-wide (type.headingCase)");
     if (!Object.keys(font).length) font = null;
   } else if (kind === "picture") {
     for (const p of TEXT_PROPS) if (p in el && p !== "color") note(sel, p, "n/a", "a text property on a picture");
@@ -433,16 +514,20 @@ for (const el of all) {
   for (const p of ["x", "y", "w", "h"]) note(sel, p, "field", p);
 
   /* What has no field on any part. */
-  if (el.pad) note(sel, "pad", "nowhere", "a node has no padding field; a part pads itself");
   if (el.mar) note(sel, "mar", "nowhere", "a node has no margin field; the box already stands where the margin put it");
-  for (const p of LAYOUT_PROPS) if (p in el) note(sel, p, DEFAULT_OF[p]?.(el[p]) ? "default" : "nowhere", DEFAULT_OF[p]?.(el[p]) ? "" : "a node has no layout field; a part lays its own contents out");
   if ("minh" in el && kind !== "page") note(sel, "minh", DEFAULT_OF.minh(el.minh) ? "default" : "nowhere", DEFAULT_OF.minh(el.minh) ? "" : "a node has a size, not a constraint on one");
   if ("maxw" in el && kind !== "picture") note(sel, "maxw", DEFAULT_OF.maxw(el.maxw) ? "default" : "nowhere", DEFAULT_OF.maxw(el.maxw) ? "" : "a node has a size, not a constraint on one");
   if (el.pos) {
     const relativeStill = el.pos === "relative" && (el.ins ?? []).every((v) => v === "0px");
-    note(sel, "pos", relativeStill ? "default" : "nowhere", relativeStill ? "relative with no offset" : `${el.pos}: a part is placed on the page by its box and scrolls with it; nothing is fixed to the viewport`);
-    if (el.ins) note(sel, "ins", relativeStill ? "default" : "nowhere", relativeStill ? "" : "the inset that placed it; its box already carries the result");
-    if ("z" in el) note(sel, "z", DEFAULT_OF.z(el.z) ? "default" : "nowhere", DEFAULT_OF.z(el.z) ? "" : "stacking is the order of the nodes array, never a number");
+    if (relativeStill) {
+      note(sel, "pos", "default", "relative with no offset");
+      if (el.ins) note(sel, "ins", "default", "");
+      if ("z" in el) note(sel, "z", DEFAULT_OF.z(el.z) ? "default" : "nowhere", DEFAULT_OF.z(el.z) ? "" : "stacking is the order of the nodes array, never a number");
+    } else {
+      note(sel, "pos", "field", `${el.pos}: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did`);
+      if (el.ins) note(sel, "ins", "nowhere", "the inset that placed it; its box already carries the result");
+      if ("z" in el) note(sel, "z", DEFAULT_OF.z(el.z) ? "default" : "field", DEFAULT_OF.z(el.z) ? "" : "the order of the positioned bands in the nodes array; the number itself is not kept");
+    }
   }
 
   /* Its name on the board. */
@@ -450,8 +535,6 @@ for (const el of all) {
     const kinds = [...new Set(el.strokes.map((s) => s.t))];
     label = `icon · ${el.strokes.length} stroke${el.strokes.length === 1 ? "" : "s"}`;
     data = `${el.strokes.length} stroke${el.strokes.length === 1 ? "" : "s"} (${kinds.join(", ")})${el.inks.length ? ` in ${el.inks.join(", ")}` : ""}; the path geometry was not captured`;
-    for (const p of ["x", "y", "w", "h"]) { /* noted above as field */ }
-    if ("minh" in el) { /* noted above */ }
   } else if (kind === "picture") {
     /* named above */
   } else if (words) {
@@ -472,38 +555,56 @@ for (const el of all) {
   }
   if (kind === "heading") options.turn = "none";
 
-  nodes.push({
-    id,
-    pageId: PAGE_ID,
-    featureId,
-    label,
-    prompt: `Captured from ${host} as ${sel}. The box, the words, the colours and the type are the ones measured on the page.`,
-    content,
-    data,
-    x: el.x, y: el.y, w: el.w, h: el.h,
-    groupId: groupOf.get(el) ?? null,
-    options,
-    priority: "must",
-    custom: featureId === "custom-idea",
-    glyph: null,
-    hue: null,
-    locked: false,
-    link,
-    colour: Object.keys(colour).length ? colour : null,
-    font,
-    anim: null,
-    animSpeed: 1,
-    animDelay: 0,
-    animEase: "smooth",
-    aura: null,
-    auraSize: 1,
-    auraStyle: "glow",
-    texture: null,
-    ...(picture ? { picture } : {}),
-    sketch: null,
-    from: { url: cap.url, host, selector: sel, at },
+  made.push({
+    el,
+    band: bandOf(el),
+    node: {
+      id: "",
+      pageId: PAGE_ID,
+      featureId,
+      label,
+      prompt: `Captured from ${host} as ${sel}. The box, the words, the colours and the type are the ones measured on the page.`,
+      content,
+      data,
+      x: el.x, y: el.y, w: el.w, h: el.h,
+      groupId: null,
+      options,
+      priority: "must",
+      custom: featureId === "custom-idea",
+      glyph: null,
+      hue: null,
+      locked: false,
+      link,
+      colour: Object.keys(colour).length ? colour : null,
+      font,
+      anim: null,
+      animSpeed: 1,
+      animDelay: 0,
+      animEase: "smooth",
+      aura: null,
+      auraSize: 1,
+      auraStyle: "glow",
+      texture: null,
+      ...(picture ? { picture } : {}),
+      sketch: null,
+      from: { url: cap.url, host, selector: sel, at },
+      ...(layout ? { layout } : {}),
+      ...(pad ? { pad } : {}),
+      ...(edge ? { edge } : {}),
+      ...(text ? { text } : {}),
+    },
   });
 }
+
+/*
+ * The stack. What flows is written first, in the capture's order; each
+ * positioned band follows, lowest z-index first and otherwise in the order
+ * the bands were captured, with everything inside it in its own order.
+ */
+const bands = [...new Set(made.map((m) => m.band).filter(Boolean))];
+const bandRank = new Map(bands.sort((a, b) => zOf(a) - zOf(b) || a.order - b.order).map((b, i) => [b, i + 1]));
+made.sort((a, b) => (a.band ? bandRank.get(a.band) : 0) - (b.band ? bandRank.get(b.band) : 0) || a.el.order - b.el.order);
+const nodes = made.map((m, i) => ({ ...m.node, id: `n_${m.node.featureId.replace(/-/g, "")}_${i + 1}` }));
 
 /* ------------------------------------------------------------------ */
 /* The page                                                             */
@@ -523,7 +624,8 @@ note("(capture)", "font", "field", `type.bodyFamily and type.headingFamily as th
 const doc = {
   pages: [{ id: PAGE_ID, name: cap.title, path: url.pathname, prompt: "", scroll: "inherit" }],
   nodes,
-  groups,
+  // No groups: a container is a box holding its children by geometry, and nothing else wraps them.
+  groups: [],
   shapes: [],
   format: {
     "type.headingFamily": familyOf(cap.font) ?? "geometric sans",
@@ -556,9 +658,33 @@ writeFileSync(join(outDir, "site", "document.json"), JSON.stringify(doc, null, 2
 
 const byKind = {};
 for (const el of all) byKind[el.kind] = (byKind[el.kind] ?? 0) + 1;
-console.log(`${all.length} captured elements → ${nodes.length} parts on ${doc.pages.length} page, ${groups.length} groups, ${pictures.length} pictures${pictures.length ? ` (${pictures.map((p) => p.path).join(", ")})` : ""}`);
+console.log(`${all.length} captured elements → ${nodes.length} parts on ${doc.pages.length} page, ${doc.groups.length} groups, ${pictures.length} pictures${pictures.length ? ` (${pictures.map((p) => p.path).join(", ")})` : ""}`);
 console.log("elements by kind:", JSON.stringify(byKind));
 console.log("parts by feature:", JSON.stringify(nodes.reduce((m, n) => ({ ...m, [n.featureId]: (m[n.featureId] ?? 0) + 1 }), {})));
+console.log("parts carrying a box field:", JSON.stringify({ layout: nodes.filter((n) => n.layout).length, pad: nodes.filter((n) => n.pad).length, edge: nodes.filter((n) => n.edge).length, text: nodes.filter((n) => n.text).length }));
+console.log(`paint order: ${made.filter((m) => !m.band).length} parts that flow, then ${bands.length} positioned band${bands.length === 1 ? "" : "s"}: ${bands.map((b) => `${b.t} (${b.pos}, z ${b.z ?? "auto"}, ${made.filter((m) => m.band === b).length} parts)`).join(", ")}`);
+
+/*
+ * Overlaps in the measured geometry: two parts whose boxes cross with
+ * neither holding the other. A child inside its parent is not one; a child
+ * poking out of its parent is. They are the page's own and are kept; the
+ * paint order above is what settles which shows.
+ */
+const holds = (o, i) => o.x <= i.x && o.y <= i.y && o.x + o.w >= i.x + i.w && o.y + o.h >= i.y + i.h;
+const isAncestor = (a, b) => { for (let n = b.parent; n; n = n.parent) if (n === a) return true; return false; };
+const overlaps = [];
+for (let i = 0; i < made.length; i++) {
+  for (let j = i + 1; j < made.length; j++) {
+    const a = made[i].el, b = made[j].el;
+    const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+    const h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+    if (w <= 0 || h <= 0 || holds(a, b) || holds(b, a)) continue;
+    const kin = isAncestor(a, b) || isAncestor(b, a);
+    overlaps.push({ a, b, w, h, kin, positioned: !kin && !!(made[i].band || made[j].band) && made[i].band !== made[j].band });
+  }
+}
+console.log(`\noverlaps in the measured geometry: ${overlaps.length} — ${overlaps.filter((o) => o.positioned).length} a positioned band over what flows beneath it, ${overlaps.filter((o) => o.kin).length} a child poking out of its own parent`);
+for (const o of overlaps) console.log(`    ${o.a.sel}  ×  ${o.b.sel}  (${o.w}×${o.h}px${o.positioned ? ", the band paints on top" : o.kin ? ", the child paints on top" : ""})`);
 
 const props = new Map();
 for (const l of ledger) {

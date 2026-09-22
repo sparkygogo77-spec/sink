@@ -8,7 +8,7 @@ box, its own text and its computed styles. Nothing in it was inferred.
 exact-copy path loads whole. `capture-to-document.mjs` made it, by declared
 rules only; `ledger.txt` is what it printed: for every captured property,
 where it went — a typed field, a parent it folded into, a CSS default, or
-nowhere.
+nowhere — and the overlaps in the measured geometry, listed pair by pair.
 
 To make it again, from the repository root:
 
@@ -16,8 +16,20 @@ To make it again, from the repository root:
     curl -sSO https://ccc-woad.vercel.app/solana-logo.png
     node site/capture/capture-to-document.mjs site/capture/ccc-capture.json . --pictures .
 
-A captured image is the picture part's own: `node.picture` names a file
-under `assets/pictures/`, written by the converter and committed beside the
-document, which is where the exact-copy path fetches it from. Nothing enters
-`look.texture`: a page layer is worn by every part, not by the one that
-holds it.
+What each element becomes: its own part, at its own box, chosen by what the
+element itself draws. Own words on a heading are a `value-prop`, on a
+painted or edged button or link a `cta-primary`, otherwise `prose`; an
+`img` is the `picture` part holding `node.picture`, a reference to a file
+under `assets/pictures/` committed beside the document; an svg and any
+element with no words of its own is `box`, the plain part that draws
+nothing of its own. Every node carries what the capture recorded of its box
+in the four node fields — `layout`, `pad`, `edge`, `text` — except a button,
+which draws its own edge and padding.
+
+There are no groups: a container is a box holding its children by geometry,
+and nothing else wraps them. Nothing enters `look.texture`.
+
+A fixed or absolute element keeps the box it was measured with at scroll 0,
+and its band is written after the parts that flow, lowest z-index first, so
+it paints over them as the browser did. The overlaps that were measured are
+the page's own and are kept.

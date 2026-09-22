@@ -1,12 +1,40 @@
-165 captured elements → 126 parts on 1 page, 4 groups, 2 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png)
+165 captured elements → 126 parts on 1 page, 0 groups, 2 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png)
 elements by kind: {"page":2,"box":54,"words":38,"button":8,"picture":2,"icon":21,"stroke":37,"heading":3}
-parts by feature: {"custom-idea":75,"prose":38,"cta-primary":8,"picture":2,"value-prop":3}
+parts by feature: {"box":75,"prose":38,"value-prop":3,"cta-primary":8,"picture":2}
+parts carrying a box field: {"layout":36,"pad":22,"edge":14,"text":22}
+paint order: 56 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
+
+overlaps in the measured geometry: 23 — 19 a positioned band over what flows beneath it, 4 a child poking out of its own parent
+    body > div > main  ×  body > div > header  (1507×9px, the band paints on top)
+    body > div > main  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
+    body > div > main  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
+    body > div > main > div  ×  body > div > header  (1507×9px, the band paints on top)
+    body > div > main > div  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
+    body > div > main > div  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1)  ×  body > div > header  (1507×9px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(1)  ×  body > div > header  (365×9px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2)  ×  body > div > header  (365×9px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2)  ×  body > div > header > div > div:nth-of-type(2)  (112×28px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2)  ×  body > div > header > div > div:nth-of-type(2) > img  (112×28px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2)  (112×11px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1)  ×  body > div > header > div > div:nth-of-type(2) > img  (112×11px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(3)  ×  body > div > header  (365×9px, the band paints on top)
+    body > div > main > div > div:nth-of-type(1) > div:nth-of-type(4)  ×  body > div > header  (365×9px, the band paints on top)
+    body > div > aside  ×  body > div > header  (256×9px, the band paints on top)
+    body > div > aside > nav  ×  body > div > header  (255×9px, the band paints on top)
+    body > div > header  ×  body > div > header > div > div:nth-of-type(2)  (112×82px, the child paints on top)
+    body > div > header  ×  body > div > header > div > div:nth-of-type(2) > img  (112×82px, the child paints on top)
+    body > div > header > div  ×  body > div > header > div > div:nth-of-type(2)  (112×49px, the child paints on top)
+    body > div > header > div  ×  body > div > header > div > div:nth-of-type(2) > img  (112×49px, the child paints on top)
 
 WHERE EACH CAPTURED PROPERTY WENT
 
-align  (37): default 4, nowhere 33
-    33× nowhere: a node has no layout field; a part lays its own contents out
-    1× default: the page has no layout field; parts are placed by box
+align  (37): default 4, field 31, stored 2
+    31× field: layout.align
+    2× stored: layout.align: the part fills the box, so a layout round it has one child and nothing to arrange
+    1× default: the page is not a part; its bands are placed by box
 
 bg  (15): field 14, nowhere 1
     11× field: colour.bg and colour.surface
@@ -20,10 +48,9 @@ bodyBg  (1): field 1
 bodyColor  (1): field 1
     1× field: look.palette.text
 
-border  (22): field 8, stored 1, nowhere 13
-    13× nowhere: a node has no border field
-    8× field: colour: colour.accent (the part draws its edge in the accent); width 1.11px and style "solid" have no field — the part draws 2px
-    1× stored: colour.accent, which this part does not draw as an edge; width and style have no field
+border  (22): field 22
+    14× field: edge {width 1.11111, style solid, colour}
+    8× field: colour: colour.accent (the part draws its edge in the accent); width 1.11px and style "solid" stay off — the button draws its own 2px edge, and an edge on the node would draw a second round it
 
 capturedAt  (1): field 1
     1× field: from.at on every part
@@ -38,16 +65,18 @@ color  (88): field 41, stored 8, n/a 2, folded 37
     2× folded: the icon's colour.accent (body > div > header > div > div:nth-of-type(3) > div:nth-of-type(1) > div > div > svg)
     2× folded: the icon's colour.accent (body > div > aside > nav > button:nth-of-type(5) > svg)
 
-cols  (1): nowhere 1
-    1× nowhere: a node has no layout field; a part lays its own contents out
+cols  (1): field 1
+    1× field: layout.columns
 
-dir  (37): nowhere 37
-    36× nowhere: a node has no layout field; a part lays its own contents out
-    1× nowhere: the page has no layout field; parts are placed by box
+dir  (37): nowhere 1, field 34, stored 2
+    34× field: layout.direction
+    2× stored: layout.direction: the part fills the box, so a layout round it has one child and nothing to arrange
+    1× nowhere: the page is not a part; its bands are placed by box
 
-disp  (37): nowhere 37
-    36× nowhere: a node has no layout field; a part lays its own contents out
-    1× nowhere: the page has no layout field; parts are placed by box
+disp  (37): nowhere 1, field 34, stored 2
+    34× field: layout.display
+    2× stored: layout.display: the part fills the box, so a layout round it has one child and nothing to arrange
+    1× nowhere: the page is not a part; its bands are placed by box
 
 ff  (88): field 49, n/a 39
     42× field: font.family "monospace"; the name travels, a web font's file does not
@@ -75,9 +104,9 @@ fw  (88): field 38, stored 11, n/a 39
     3× stored: font.weight; value-prop sets its own weight (700)
     2× n/a: a text property on a picture
 
-gap  (37): default 18, nowhere 19
-    19× nowhere: a node has no layout field; a part lays its own contents out
-    1× default: the page has no layout field; parts are placed by box
+gap  (37): default 18, field 19
+    19× field: layout.gap
+    1× default: the page is not a part; its bands are placed by box
 
 h  (165): nowhere 39, field 126
     126× field: h
@@ -85,15 +114,16 @@ h  (165): nowhere 39, field 126
     2× nowhere: the frame's height is derived from the lowest part, never stored
 
 href  (3): stored 3
-    2× stored: link (url); custom-idea is not a linkable part, so the link is written but not pressed
+    2× stored: link (url); box is not a linkable part, so the link is written but not pressed
     1× stored: link (url); prose is not a linkable part, so the link is written but not pressed
 
 ins  (6): nowhere 4, default 2
     4× nowhere: the inset that placed it; its box already carries the result
 
-just  (37): default 22, nowhere 15
-    15× nowhere: a node has no layout field; a part lays its own contents out
-    1× default: the page has no layout field; parts are placed by box
+just  (37): default 22, field 13, stored 2
+    13× field: layout.justify
+    2× stored: layout.justify: the part fills the box, so a layout round it has one child and nothing to arrange
+    1× default: the page is not a part; its bands are placed by box
 
 lh  (88): field 46, n/a 39, stored 3
     37× n/a: a text property on a stroke
@@ -120,8 +150,14 @@ maxw  (4): nowhere 2, default 2
 minh  (75): nowhere 1, default 74
     1× nowhere: the page's height is derived
 
-pad  (29): nowhere 29
-    29× nowhere: a node has no padding field; a part pads itself
+pad  (29): field 22, nowhere 7
+    8× field: pad {12, 16, 12, 16}; the theme is set tight so the part adds no padding of its own
+    7× field: pad {16, 16, 16, 16}; the theme is set tight so the part adds no padding of its own
+    7× nowhere: the button pads its own words inside its own edge; padding on the node would shrink the button inside the measured box
+    3× field: pad {24, 24, 24, 24}; the theme is set tight so the part adds no padding of its own
+    2× field: pad {48, 0, 48, 0}; the theme is set tight so the part adds no padding of its own
+    1× field: pad {8, 12, 8, 12}; the theme is set tight so the part adds no padding of its own
+    1× field: pad {8, 8, 8, 8}; the theme is set tight so the part adds no padding of its own
 
 page[0]  (1): field 1
     1× field: frameWidth (the same number)
@@ -129,10 +165,10 @@ page[0]  (1): field 1
 page[1]  (1): nowhere 1
     1× nowhere: the frame's height is derived from the lowest part
 
-pos  (6): nowhere 4, default 2
-    3× nowhere: fixed: a part is placed on the page by its box and scrolls with it; nothing is fixed to the viewport
+pos  (6): field 4, default 2
+    3× field: fixed: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
     2× default: relative with no offset
-    1× nowhere: absolute: a part is placed on the page by its box and scrolls with it; nothing is fixed to the viewport
+    1× field: absolute: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
 
 src  (2): field 2
     1× field: node.picture: a reference to assets/pictures/pic_cc8659c3.png (316593 bytes, 1024×1024), the bytes committed beside the document; the address itself is kept in data as words only
@@ -148,9 +184,11 @@ t  (165): field 165
     2× field: the tag picks the part (page) and is kept in from.selector
     2× field: the tag picks the part (picture) and is kept in from.selector
 
-ta  (88): default 27, nowhere 22, n/a 39
+ta  (88): default 27, field 22, n/a 39
     37× n/a: a text property on a stroke
-    22× nowhere: alignment is a site-wide format value (type.align), not a part's own
+    8× field: text.align center; the button centres its one line whatever is said
+    8× field: text.align left
+    6× field: text.align center
     2× n/a: a text property on a picture
 
 text  (49): field 49
@@ -159,10 +197,10 @@ text  (49): field 49
 title  (1): field 1
     1× field: brief.name and pages[0].name
 
-tt  (88): default 48, nowhere 1, n/a 39
+tt  (88): default 48, field 1, n/a 39
     37× n/a: a text property on a stroke
     2× n/a: a text property on a picture
-    1× nowhere: no node field for text-transform; heading case is site-wide (type.headingCase)
+    1× field: text.transform uppercase
 
 url  (1): field 1
     1× field: from.url on every part; pages[0].path
@@ -179,7 +217,7 @@ w  (165): field 128, nowhere 37
     2× field: the page's own width: frameWidth
 
 wrap  (37): default 37
-    1× default: the page has no layout field; parts are placed by box
+    1× default: the page is not a part; its bands are placed by box
 
 x  (165): default 2, field 126, nowhere 37
     126× field: x
@@ -191,5 +229,5 @@ y  (165): default 2, field 126, nowhere 37
     37× nowhere: a stroke's box: the icon keeps only its own box, and the path geometry was not captured
     2× default: the page's own origin
 
-z  (6): nowhere 2, default 4
-    2× nowhere: stacking is the order of the nodes array, never a number
+z  (6): field 2, default 4
+    2× field: the order of the positioned bands in the nodes array; the number itself is not kept
