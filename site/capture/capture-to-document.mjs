@@ -42,6 +42,24 @@
  *   own text, anything else                             → `prose`
  *   no text of its own                                  → `box`, the plain part that draws nothing of its own
  *
+ * WHAT A THING IS, BEFORE WHAT IT LOOKS LIKE. Each captured element carries
+ * the role the browser's accessibility tree computed for it (`role`), its
+ * accessible name (`name`), its states (`state`) and, for a field, its
+ * `type` and `placeholder`. The part is chosen from the role first —
+ * heading, paragraph, image, button — and from shape only where the tree
+ * gave none. Where the library has no part for a role (link, navigation,
+ * banner, main, complementary, contentinfo, list, listitem, textbox) the
+ * look stays exactly what the shape rule draws today, and the role still
+ * travels: in the label every surface shows, in the prompt the blueprint
+ * writes, and — for the interactive roles, textbox, button and link — in
+ * `data`, which the blueprint writes under "What the backend must
+ * provide", with the type, placeholder, name and state. His search field
+ * is a `textbox` named "Ask or search..." with that placeholder; the page
+ * declares no search role, so none is written, and the placeholder travels
+ * as evidence rather than as a decision. A typed field for the role would
+ * be cleaner than label, prompt and data; that is a change to polio's
+ * `StudioNode`, not to this converter.
+ *
  * A BUTTON WHOSE WORDS SIT IN A CHILD (the eight entries of his sidebar: a
  * `button` holding an `svg` and a `span`) is NOT reclassified here. The
  * ruling is that a thing that is a button with words on it becomes a
@@ -414,13 +432,23 @@ function convert(pageDef, cap) {
   const wordsWithin = (el) => { const out = []; (function g(n) { if (n.text) out.push(n.text.trim()); for (const k of n.kids) g(k); })(el); return out.join(" ").replace(/\s+/g, " ").trim(); };
 
   /** What each element becomes. Declared, in order, most particular first. */
+  /**
+   * What each element becomes. The role first, where the tree computed
+   * one; the shape only where it did not. A role the library has no part
+   * for keeps the shape's part and carries the role beside it.
+   */
   function classify(el) {
     if (el.t === "body") return "page";
     if (el.parent?.t === "body" && isPageBox(el)) return "page";
     if (STROKE_TAGS.has(el.t) || (el.parent && el.parent.kind === "stroke")) return "stroke";
     if (el.t === "svg") { let d = false; (function g(n) { for (const k of n.kids) { if (k.d) d = true; g(k); } })(el); return d && el.vb ? "icon" : "icon-blind"; }
-    if (el.t === "img") return "picture";
+    if (el.t === "img" || el.role === "image") return "picture";
     const words = (el.text ?? "").trim();
+    if (el.role === "heading" && words) return "heading";
+    if (el.role === "paragraph" && words) return "words";
+    // A button by role with its own words, painted or edged: the one case the button part draws faithfully enough today.
+    // Unpainted, or with its words in a child, it keeps the shape's part until the part holds a captured look (see the head of this file).
+    if (el.role === "button" && words && (el.bg || el.border)) return "button";
     if (words) {
       if (/^h[1-6]$/.test(el.t)) return "heading";
       if ((el.t === "button" || el.t === "a") && (el.bg || el.border)) return "button";
@@ -571,7 +599,23 @@ function convert(pageDef, cap) {
       link = { kind: "page", target: routes.sections[wordsWithin(el)] };
       note(sel, "(sidebar)", "stored", `link (page ${link.target}): "${wordsWithin(el)}" leads to the page its section was captured as; the box does not press a link, so it is carried until the button ruling is settled`);
     }
-    if (el.title) note(sel, "title", "nowhere", `"${el.title}" is shown on hover; no field holds it, and it is not written into the box as words the page does not show`);
+    if (el.title) note(sel, "title", el.name ? "field" : "nowhere", el.name ? `the accessible name the tree computed from it ("${el.name}"): label and data, never words drawn in the box` : `"${el.title}" is shown on hover; the tree gave the element no name from it`);
+
+    /* What it is: the role, its name, its states, and a field's type and placeholder. */
+    const roleBits = [];
+    if (el.role) {
+      const drawnBy = { heading: "value-prop", paragraph: "prose", image: featureId, button: kind === "button" ? "cta-primary" : null }[el.role] ?? null;
+      note(sel, "role", "field", drawnBy ? `${el.role}: the part (${drawnBy}) is chosen from it; written in label and prompt` : `${el.role}: no part in the library draws it, so the look is the shape's (${featureId}) and the role is written in label and prompt${["textbox", "button", "link"].includes(el.role) ? " and data" : ""}`);
+      roleBits.push(el.role);
+      if (el.name) { roleBits.push(`named “${el.name}”`); note(sel, "name", "field", `the accessible name: label${["textbox", "button", "link"].includes(el.role) ? " and data" : ""}${words && words === el.name ? " (the same as its words)" : ""}`); }
+      if (el.state) { roleBits.push(...Object.entries(el.state).map(([k, v]) => (v === true ? k : `${k} ${v}`))); note(sel, "state", "field", `${Object.keys(el.state).join(", ")}: prompt${["textbox", "button", "link"].includes(el.role) ? " and data" : ""}`); }
+    }
+    if (el.type) { roleBits.push(`type ${el.type}`); note(sel, "type", "field", `a ${el.type} field: prompt and data`); }
+    if (el.placeholder) { roleBits.push(`placeholder “${el.placeholder}”`); note(sel, "placeholder", "field", "prompt and data, as evidence of what the field is for; not words drawn in the box, which the page does not draw either"); }
+    if (el.value) { roleBits.push(`value “${el.value}”`); note(sel, "value", "field", "prompt and data"); }
+    if (el.aria) note(sel, "aria", el.name ? "folded" : "nowhere", el.name ? "the accessible name" : "");
+    const roleLine = roleBits.join(", ");
+    const roleSaid = el.role ? `The browser computes it as a ${roleLine}.` : "";
 
     /* The picture. */
     let picture = null;
@@ -583,6 +627,7 @@ function convert(pageDef, cap) {
       if (got) {
         picture = got.record;
         label = got.name.replace(/\.[^.]+$/, "") || "Picture";
+        if (el.name) label = `image “${cut(el.name, 36)}”`;
         note(sel, "src", "field", `node.picture: a reference to ${got.record.path} (${got.bytes} bytes, ${got.size.w}×${got.size.h}), the bytes committed beside the document; the address itself is kept in data as words only`);
       } else {
         label = basename(new URL(el.src, cap.url).pathname);
@@ -620,20 +665,27 @@ function convert(pageDef, cap) {
       }
     }
 
-    /* Its name on the board. */
+    /* Its name on the board: what it is, then what it says or holds. */
+    const said = el.role ? `${el.role}${el.name ? ` “${cut(el.name, 36)}”` : ""}` : null;
     if (kind === "icon" || kind === "icon-blind") {
       const kinds = [...new Set(strokes.map((s) => s.t))];
-      label = `icon · ${strokes.length} stroke${strokes.length === 1 ? "" : "s"}`;
+      label = `${said ?? "icon"} · ${strokes.length} stroke${strokes.length === 1 ? "" : "s"}`;
       data = kind === "icon"
         ? `${strokes.length} stroke${strokes.length === 1 ? "" : "s"} (${kinds.join(", ")})${inks.length ? ` in ${inks.join(", ")}` : ""}`
         : `${strokes.length} stroke${strokes.length === 1 ? "" : "s"} (${kinds.join(", ")})${inks.length ? ` in ${inks.join(", ")}` : ""}; the path geometry was not captured`;
     } else if (kind === "picture") {
       /* named above */
+    } else if (said && el.name && el.name === words) {
+      label = said;
+    } else if (said) {
+      label = words ? `${said}: ${cut(words, 36)}` : `${said} · ${el.kids.length} inside`;
     } else if (words) {
       label = cut(words, 36);
     } else {
       label = `${el.t} · ${el.kids.length} inside`;
     }
+    /* The interactive roles say what they are where the backend list is written. */
+    if (["textbox", "button", "link"].includes(el.role)) data = [data, roleLine].filter(Boolean).join("; ");
 
     /* Options a real part reads. */
     const options = {};
@@ -660,7 +712,7 @@ function convert(pageDef, cap) {
         pageId: PAGE_ID,
         featureId,
         label,
-        prompt: `Captured from ${host}${url.pathname}${cap.section ? ` (${cap.section})` : ""} as ${sel}. The box, the words, the colours and the type are the ones measured on the page.`,
+        prompt: `Captured from ${host}${url.pathname}${cap.section ? ` (${cap.section})` : ""} as ${sel}. The box, the words, the colours and the type are the ones measured on the page.${roleSaid ? ` ${roleSaid}` : ""}`,
         content,
         data,
         x: el.x, y: el.y, w: el.w, h: el.h,
@@ -887,6 +939,7 @@ for (const c of converted) {
   console.log("  parts by feature:", JSON.stringify(count(c.made, (m) => m.node.featureId)));
   console.log("  parts carrying a box field:", JSON.stringify({ layout: c.made.filter((m) => m.node.layout).length, pad: c.made.filter((m) => m.node.pad).length, edge: c.made.filter((m) => m.node.edge).length, text: c.made.filter((m) => m.node.text).length }));
   console.log(`  links: ${JSON.stringify(count(c.made.filter((m) => m.node.link), (m) => `${m.node.link.kind}:${m.node.link.target}`))}`);
+  console.log(`  roles: ${JSON.stringify(count(c.made.filter((m) => m.el.role), (m) => m.el.role))}; ${c.made.filter((m) => !m.el.role).length} with none`);
   console.log(`  paint order: ${c.made.filter((m) => !m.band).length} parts that flow, then ${c.bands.length} positioned band${c.bands.length === 1 ? "" : "s"}: ${c.bands.map((b) => `${b.t} (${b.pos}, z ${b.z ?? "auto"}, ${c.made.filter((m) => m.band === b).length} parts)`).join(", ")}`);
   console.log(`  overlaps in the measured geometry: ${c.overlaps.length} — ${c.overlaps.filter((o) => o.positioned).length} a positioned band over what flows beneath it, ${c.overlaps.filter((o) => o.kin).length} a child poking out of its own parent`);
 }

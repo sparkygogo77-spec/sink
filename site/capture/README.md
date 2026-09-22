@@ -30,6 +30,25 @@ To make it again, from the repository root:
     node site/capture/capture-all.mjs
     node site/capture/capture-to-document.mjs site/capture/routes.json . --assets assets/source > site/capture/ledger.txt
 
+## What a captured element is, before what it looks like
+
+Every element carries the role the browser's accessibility tree computed
+for it, its accessible name, its states, and for a field its type and
+placeholder. The part is chosen from the role first — heading, paragraph,
+image, button — and from shape only where the tree gave none. Where the
+library has no part for a role (link, navigation, banner, main,
+complementary, contentinfo, list, listitem, textbox) the look stays exactly
+what the shape rule draws, and the role travels anyway: in the label every
+surface shows (`textbox “Ask or search...”`, `link “Documentation”`), in the
+prompt the blueprint writes, and for textbox, button and link in `data`,
+which the blueprint writes under "What the backend must provide", with type,
+placeholder, name and state. The accessible name is what recovers the
+sixteen icon-only documentation links and the header's person button, which
+had no words on the page. His search field is a `textbox`: the page declares
+no search role, so none is written, and its placeholder travels as evidence.
+A typed field for the role would be cleaner than label, prompt and data; that
+is a change to polio's node, not to this converter.
+
 ## What a captured element becomes
 
 Its own part, at its own box, chosen by what the element itself draws. Own

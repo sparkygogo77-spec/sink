@@ -5,6 +5,7 @@ page_home (Creator Hub, /): 168 elements → 126 parts
   parts by feature: {"box":54,"prose":38,"drawn-icon":21,"value-prop":3,"cta-primary":8,"picture":2}
   parts carrying a box field: {"layout":36,"pad":22,"edge":14,"text":22}
   links: {"url:https://pump.fun/":1,"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"image":23,"heading":3,"button":20,"paragraph":2,"link":3,"complementary":1,"navigation":1,"banner":1,"contentinfo":1}; 70 with none
   paint order: 56 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 24 — 19 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -13,6 +14,7 @@ page_cleanup (Cleanup, /cleanup, after pressing "Cleanup"): 118 elements → 87 
   parts by feature: {"box":40,"drawn-icon":17,"value-prop":3,"prose":22,"cta-primary":3,"picture":2}
   parts carrying a box field: {"layout":26,"pad":16,"edge":8,"text":14}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"image":19,"heading":3,"paragraph":2,"button":14,"complementary":1,"navigation":1,"banner":1,"link":2,"contentinfo":1}; 42 with none
   paint order: 17 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -21,6 +23,7 @@ page_tokens (Tokens, /tokens, after pressing "Tokens"): 112 elements → 79 part
   parts by feature: {"box":36,"drawn-icon":16,"value-prop":2,"prose":21,"cta-primary":2,"picture":2}
   parts carrying a box field: {"layout":25,"pad":15,"edge":7,"text":13}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"image":18,"heading":2,"paragraph":1,"complementary":1,"navigation":1,"button":13,"banner":1,"link":2,"contentinfo":1}; 38 with none
   paint order: 9 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -29,6 +32,7 @@ page_nfts (NFTs, /nfts, after pressing "NFTs"): 113 elements → 84 parts
   parts by feature: {"box":37,"value-prop":2,"prose":25,"picture":3,"drawn-icon":15,"cta-primary":2}
   parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":19}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"heading":2,"paragraph":4,"image":18,"complementary":1,"navigation":1,"button":13,"banner":1,"link":2,"contentinfo":1}; 40 with none
   paint order: 14 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -37,6 +41,7 @@ page_cnfts (cNFTs, /cnfts, after pressing "cNFTs"): 113 elements → 84 parts
   parts by feature: {"box":37,"value-prop":2,"prose":25,"picture":3,"drawn-icon":15,"cta-primary":2}
   parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":19}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"heading":2,"paragraph":4,"image":18,"complementary":1,"navigation":1,"button":13,"banner":1,"link":2,"contentinfo":1}; 40 with none
   paint order: 14 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -45,6 +50,7 @@ page_domains (Domains, /domains, after pressing "Domains"): 110 elements → 79 
   parts by feature: {"box":36,"drawn-icon":16,"value-prop":2,"prose":21,"cta-primary":2,"picture":2}
   parts carrying a box field: {"layout":25,"pad":15,"edge":7,"text":13}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"image":18,"heading":2,"paragraph":1,"complementary":1,"navigation":1,"button":13,"banner":1,"link":2,"contentinfo":1}; 38 with none
   paint order: 9 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -53,6 +59,7 @@ page_lp (LP, /lp, after pressing "LP"): 113 elements → 84 parts
   parts by feature: {"box":37,"value-prop":2,"prose":25,"picture":3,"drawn-icon":15,"cta-primary":2}
   parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":19}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"heading":2,"paragraph":4,"image":18,"complementary":1,"navigation":1,"button":13,"banner":1,"link":2,"contentinfo":1}; 40 with none
   paint order: 14 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -61,6 +68,7 @@ page_unknown (Unknown, /unknown, after pressing "Unknown"): 111 elements → 82 
   parts by feature: {"box":37,"value-prop":2,"prose":23,"picture":3,"drawn-icon":15,"cta-primary":2}
   parts carrying a box field: {"layout":26,"pad":15,"edge":7,"text":17}
   links: {"page:page_home":1,"page:page_cleanup":1,"page:page_tokens":1,"page:page_nfts":1,"page:page_cnfts":1,"page:page_domains":1,"page:page_lp":1,"page:page_unknown":1,"page:page_docs":2}
+  roles: {"main":1,"heading":2,"paragraph":3,"image":18,"complementary":1,"navigation":1,"button":13,"banner":1,"link":2,"contentinfo":1}; 39 with none
   paint order: 12 parts that flow, then 3 positioned bands: aside (fixed, z auto, 26 parts), header (fixed, z 50, 34 parts), footer (fixed, z 50, 10 parts)
   overlaps in the measured geometry: 13 — 8 a positioned band over what flows beneath it, 5 a child poking out of its own parent
 
@@ -69,6 +77,7 @@ page_docs (Documentation, /docs): 84 elements → 79 parts
   parts by feature: {"box":34,"drawn-icon":2,"prose":37,"cta-primary":2,"value-prop":4}
   parts carrying a box field: {"layout":7,"pad":25,"edge":4,"text":21}
   links: {"page:page_home":2}
+  roles: {"banner":1,"link":5,"image":2,"textbox":1,"complementary":2,"navigation":2,"button":13,"main":1,"heading":4,"paragraph":3,"list":1,"listitem":4}; 40 with none
   paint order: 77 parts that flow, then 2 positioned bands: svg (absolute, z auto, 1 parts), kbd (absolute, z auto, 1 parts)
   overlaps in the measured geometry: 0 — 0 a positioned band over what flows beneath it, 0 a child poking out of its own parent
 
@@ -237,6 +246,12 @@ minh  (442): nowhere 9, default 433
 monospace  (1): nowhere 1
     1× nowhere: a generic keyword: the machine's own face, a different face on a different machine, and it cannot be carried — every box set in it was measured in this machine's
 
+name  (181): field 181
+    106× field: the accessible name: label and data
+    33× field: the accessible name: label and data (the same as its words)
+    22× field: the accessible name: label
+    20× field: the accessible name: label (the same as its words)
+
 pad  (170): field 153, nowhere 17
     64× field: pad {12, 16, 12, 16}; the theme is set tight so the part adds no padding of its own
     31× field: pad {16, 16, 16, 16}; the theme is set tight so the part adds no padding of its own
@@ -253,6 +268,9 @@ page[1]  (1): nowhere 1
 pages  (1): field 1
     1× field: 9 pages, read from the site's source (routes.json)
 
+placeholder  (1): field 1
+    1× field: prompt and data, as evidence of what the field is for; not words drawn in the box, which the page does not draw either
+
 pos  (54): field 37, default 17
     24× field: fixed: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
     17× default: relative with no offset
@@ -261,6 +279,16 @@ pos  (54): field 37, default 17
 
 Press Start 2P  (1): field 1
     1× field: look.fonts: font:press-start-2p:400:normal, 5KB as data; the page's own file, carried as the page serves it; its licence is the page's
+
+role  (397): field 397
+    132× field: image: the part (drawn-icon) is chosen from it; written in label and prompt
+    89× field: button: no part in the library draws it, so the look is the shape's (box) and the role is written in label and prompt and data
+    24× field: button: the part (cta-primary) is chosen from it; written in label and prompt
+    24× field: paragraph: the part (prose) is chosen from it; written in label and prompt
+    22× field: heading: the part (value-prop) is chosen from it; written in label and prompt
+    20× field: image: the part (picture) is chosen from it; written in label and prompt
+    17× field: link: no part in the library draws it, so the look is the shape's (box) and the role is written in label and prompt and data
+    12× field: button: no part in the library draws it, so the look is the shape's (prose) and the role is written in label and prompt and data
 
 src  (20): field 20
     8× field: node.picture: a reference to assets/pictures/pic_cc8659c3.png (316593 bytes, 1024×1024), the bytes committed beside the document; the address itself is kept in data as words only
@@ -301,17 +329,23 @@ ta  (545): default 136, field 149, n/a 260
 text  (284): field 284
     284× field: content
 
-title  (41): nowhere 40, field 1
-    16× nowhere: "Documentation" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
-    8× nowhere: "Live Burn Feed" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
-    8× nowhere: "Creator Hub" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
-    8× nowhere: "FAQ" is shown on hover; no field holds it, and it is not written into the box as words the page does not show
-    1× field: brief.name
+title  (41): field 41
+    16× field: the accessible name the tree computed from it ("Documentation"): label and data, never words drawn in the box
+    8× field: the accessible name the tree computed from it ("Creator Hub"): label and data, never words drawn in the box
+    8× field: the accessible name the tree computed from it ("?"): label and data, never words drawn in the box
+    1× field: the accessible name the tree computed from it ("3G8S...EGjn 13s ago"): label and data, never words drawn in the box
+    1× field: the accessible name the tree computed from it ("39Nb...Wnec 6s ago"): label and data, never words drawn in the box
+    1× field: the accessible name the tree computed from it ("4HXH...TXxd 7s ago"): label and data, never words drawn in the box
+    1× field: the accessible name the tree computed from it ("2LWR...R5RJ 5s ago"): label and data, never words drawn in the box
+    1× field: the accessible name the tree computed from it ("33Ev...oVa4 6s ago"): label and data, never words drawn in the box
 
 tt  (545): default 273, field 12, n/a 260
     240× n/a: a text property on a stroke
     20× n/a: a text property on a picture
     12× field: text.transform uppercase
+
+type  (1): field 1
+    1× field: a text field: prompt and data
 
 ui-monospace  (1): nowhere 1
     1× nowhere: a generic keyword: the machine's own face, a different face on a different machine, and it cannot be carried — every box set in it was measured in this machine's
