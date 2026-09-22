@@ -259,7 +259,7 @@ name  (181): field 181
     20× field: the accessible name: label (the same as its words)
 
 pad  (170): field 170
-    64× field: pad {12, 16, 12, 16}; the theme is set tight so the part adds no padding of its own; the button's words start where the page started them
+    64× field: pad {12, 16, 12, 48}: the left is where the words were measured to start inside the button, the icon in the difference; the rest is the measured padding
     31× field: pad {16, 16, 16, 16}; the theme is set tight so the part adds no padding of its own
     21× field: pad {8, 12, 8, 12}; the theme is set tight so the part adds no padding of its own; the button's words start where the page started them
     13× field: pad {32, 32, 32, 32}; the theme is set tight so the part adds no padding of its own

@@ -73,7 +73,9 @@
  *   text.align    left, when it was — the part sets its words there rather than centred
  *   edge          as measured, or an edge of none — the wrapper draws it and the part draws none,
  *                 where before it drew a 2px edge of its own (or a transparent one 2px wide)
- *   pad           as measured — the wrapper pads, so the words start where the page started them.
+ *   pad           where its words start inside it: the measured padding, or, when the words were
+ *                 in a child beside an icon, the child's own offset, so the words land where the
+ *                 page put them and the icon (its own part) in the gap.
  *                 The wrapper does not paint a fill, and `Fill` paints the node's inside the
  *                 padding, so a padded button WITH a fill shows it inset by the padding: a
  *                 gap on the polio side, said here rather than worked around.
@@ -558,7 +560,10 @@ function convert(pageDef, cap) {
 
     /* The box: layout, padding, edge, text (parts/theme.ts#NodeBox). */
     const layout = layoutOf(el);
-    const pad = drawsOwnBox ? null : padOf(el);
+    /* A button whose words were in a child: its words start where the child started, not where its padding ends — the icon sits in the difference. */
+    const pad = kind === "button" && wordsEl !== el
+      ? { ...(padOf(el) ?? { top: 0, right: 0, bottom: 0 }), left: Math.max(0, wordsEl.x - el.x) }
+      : padOf(el);
     const edge = kind === "button" ? (edgeOf(border) ?? { width: 0, style: "none" }) : edgeOf(border);
     const text = kind === "button" ? (textOf(wordsEl) ?? textOf(el)) : textOf(el);
 
@@ -582,7 +587,8 @@ function convert(pageDef, cap) {
         note(sel, p, seen ? "field" : "stored", `layout.${LAYOUT_FIELD[p]}${seen ? "" : ": the part fills the box, so a layout round it has one child and nothing to arrange"}`);
       } else note(sel, p, "nowhere", "not a value NodeLayout takes");
     }
-    if (el.pad) note(sel, "pad", "field", `pad {${el.pad.join(", ")}}; the theme is set tight so the part adds no padding of its own${kind === "button" ? "; the button's words start where the page started them" : ""}`);
+    if (kind === "button" && wordsEl !== el) note(sel, "pad", "field", `pad {${[pad.top, pad.right, pad.bottom, pad.left].join(", ")}}: the left is where the words were measured to start inside the button, the icon in the difference; the rest is the measured padding`);
+    else if (el.pad) note(sel, "pad", "field", `pad {${el.pad.join(", ")}}; the theme is set tight so the part adds no padding of its own${kind === "button" ? "; the button's words start where the page started them" : ""}`);
     if (kind === "button" && !border) note(sel, "border", "field", "edge {none}: the page drew no edge, and the button part draws a 2px edge of its own unless the node names one, so none is named");
     if ("ta" in el && kind !== "picture") note(sel, "ta", DEFAULT_OF.ta(el.ta) ? "default" : text?.align ? "field" : "nowhere", DEFAULT_OF.ta(el.ta) ? "" : text?.align ? `text.align ${el.ta}${kind === "button" ? "; the button sets its words where the node said" : ""}` : "not a value NodeText takes");
     if ("tt" in el && kind !== "picture") note(sel, "tt", DEFAULT_OF.tt(el.tt) ? "default" : text?.transform ? "field" : "nowhere", DEFAULT_OF.tt(el.tt) ? "" : text?.transform ? `text.transform ${el.tt}` : "not a value NodeText takes");
