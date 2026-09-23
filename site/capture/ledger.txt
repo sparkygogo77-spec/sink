@@ -100,13 +100,13 @@ align  (232): default 24, field 125, stored 83
     83× stored: layout.align: the part fills the box, so a layout round it has one child and nothing to arrange
     9× default: the page is not a part; its bands are placed by box
 
-bg  (92): field 88, nowhere 4
+bg  (92): field 92
     45× field: colour.bg and colour.surface
-    24× field: colour.bg: the node's own fill, painted by Fill; the button part paints nothing over a fill the node named
+    26× field: colour.bg: the node's own fill, painted by Fill; the button part paints nothing over a fill the node named
     18× field: look.palette.bg
-    2× nowhere: oklab() is not a colour the document reads (parseColor: #hex, rgb, oklch; alpha dropped)
-    2× nowhere: the fill could not be carried, so the variant is outline rather than a solid accent the page never had
+    1× field: oklab(0.86644 -0.233888 0.179499 / 0.1) carried as rgb(19, 48, 31): composited over what is painted behind it, because the document reads no alpha and no oklab()
     1× field: colour.bg
+    1× field: oklab(0.86644 -0.233888 0.179499 / 0.1) carried as rgb(14, 44, 23): composited over what is painted behind it, because the document reads no alpha and no oklab()
 
 bodyBg  (1): field 1
     1× field: look.palette.bg; palette.mode from its lightness

@@ -1906,7 +1906,7 @@
       "groupId": null,
       "options": {
         "shape": "square",
-        "variant": "outline",
+        "variant": "solid",
         "size": "medium"
       },
       "priority": "must",
@@ -1916,8 +1916,9 @@
       "locked": false,
       "link": null,
       "colour": {
-        "text": "rgb(0, 255, 0)",
-        "accent": "rgb(0, 255, 0)"
+        "bg": "rgb(19, 48, 31)",
+        "accent": "rgb(19, 48, 31)",
+        "text": "rgb(0, 255, 0)"
       },
       "font": {
         "family": "monospace",
@@ -38596,7 +38597,7 @@
       "groupId": null,
       "options": {
         "shape": "square",
-        "variant": "outline",
+        "variant": "solid",
         "size": "medium"
       },
       "priority": "must",
@@ -38606,6 +38607,8 @@
       "locked": false,
       "link": null,
       "colour": {
+        "bg": "rgb(14, 44, 23)",
+        "accent": "rgb(14, 44, 23)",
         "text": "rgb(0, 255, 0)"
       },
       "font": {
