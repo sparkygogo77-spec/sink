@@ -278,9 +278,9 @@ placeholder  (1): field 1
     1× field: prompt and data, as evidence of what the field is for; not words drawn in the box, which the page does not draw either
 
 pos  (54): field 37, default 17
-    24× field: fixed: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
+    24× field: fixed: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did; kept as from.position, out of the flow
     17× default: relative with no offset
-    10× field: absolute: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
+    10× field: absolute: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did; kept as from.position, out of the flow
     3× field: sticky: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did
 
 Press Start 2P  (1): field 1

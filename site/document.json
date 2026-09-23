@@ -3322,7 +3322,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059307353
+        "at": 1790059307353,
+        "position": "fixed"
       }
     },
     {
@@ -4583,7 +4584,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059307353
+        "at": 1790059307353,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -5169,7 +5171,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059307353
+        "at": 1790059307353,
+        "position": "absolute"
       }
     },
     {
@@ -6467,7 +6470,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059307353
+        "at": 1790059307353,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -7974,7 +7978,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059315845
+        "at": 1790059315845,
+        "position": "fixed"
       }
     },
     {
@@ -9237,7 +9242,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059315845
+        "at": 1790059315845,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -9823,7 +9829,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059315845
+        "at": 1790059315845,
+        "position": "absolute"
       }
     },
     {
@@ -11121,7 +11128,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059315845
+        "at": 1790059315845,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -12195,7 +12203,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059324173
+        "at": 1790059324173,
+        "position": "fixed"
       }
     },
     {
@@ -13458,7 +13467,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059324173
+        "at": 1790059324173,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -14044,7 +14054,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059324173
+        "at": 1790059324173,
+        "position": "absolute"
       }
     },
     {
@@ -15342,7 +15353,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059324173
+        "at": 1790059324173,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -16680,7 +16692,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059332418
+        "at": 1790059332418,
+        "position": "fixed"
       }
     },
     {
@@ -17943,7 +17956,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059332418
+        "at": 1790059332418,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -18529,7 +18543,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059332418
+        "at": 1790059332418,
+        "position": "absolute"
       }
     },
     {
@@ -19827,7 +19842,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059332418
+        "at": 1790059332418,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -21165,7 +21181,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059340545
+        "at": 1790059340545,
+        "position": "fixed"
       }
     },
     {
@@ -22428,7 +22445,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059340545
+        "at": 1790059340545,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -23014,7 +23032,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059340545
+        "at": 1790059340545,
+        "position": "absolute"
       }
     },
     {
@@ -24312,7 +24331,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059340545
+        "at": 1790059340545,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -25378,7 +25398,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059348938
+        "at": 1790059348938,
+        "position": "fixed"
       }
     },
     {
@@ -26641,7 +26662,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059348938
+        "at": 1790059348938,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -27227,7 +27249,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059348938
+        "at": 1790059348938,
+        "position": "absolute"
       }
     },
     {
@@ -28525,7 +28548,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059348938
+        "at": 1790059348938,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -29863,7 +29887,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059356890
+        "at": 1790059356890,
+        "position": "fixed"
       }
     },
     {
@@ -31126,7 +31151,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059356890
+        "at": 1790059356890,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -31712,7 +31738,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059356890
+        "at": 1790059356890,
+        "position": "absolute"
       }
     },
     {
@@ -33010,7 +33037,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059356890
+        "at": 1790059356890,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -34236,7 +34264,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > aside",
-        "at": 1790059365041
+        "at": 1790059365041,
+        "position": "fixed"
       }
     },
     {
@@ -35499,7 +35528,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header",
-        "at": 1790059365041
+        "at": 1790059365041,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -36085,7 +36115,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div:nth-of-type(2)",
-        "at": 1790059365041
+        "at": 1790059365041,
+        "position": "absolute"
       }
     },
     {
@@ -37383,7 +37414,8 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer",
-        "at": 1790059365041
+        "at": 1790059365041,
+        "position": "fixed"
       },
       "pad": {
         "top": 16,
@@ -42253,7 +42285,8 @@
         "url": "https://ccc-woad.vercel.app/docs",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div > div > svg",
-        "at": 1790059369026
+        "at": 1790059369026,
+        "position": "absolute"
       }
     },
     {
@@ -42308,7 +42341,8 @@
         "url": "https://ccc-woad.vercel.app/docs",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > header > div > div > div > kbd",
-        "at": 1790059369026
+        "at": 1790059369026,
+        "position": "absolute"
       },
       "pad": {
         "top": 4,

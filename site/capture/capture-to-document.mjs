@@ -737,7 +737,7 @@ function convert(pageDef, cap) {
         if (el.ins) note(sel, "ins", "default", "");
         if ("z" in el) note(sel, "z", DEFAULT_OF.z(el.z) ? "default" : "nowhere", DEFAULT_OF.z(el.z) ? "" : "stacking is the order of the nodes array, never a number");
       } else {
-        note(sel, "pos", "field", `${el.pos}: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did`);
+        note(sel, "pos", "field", `${el.pos}: the box stays where it was measured, and the band is written after the parts that flow, so it paints over them as the browser did${el.pos === "absolute" || el.pos === "fixed" ? "; kept as from.position, out of the flow" : ""}`);
         if (el.ins) note(sel, "ins", "nowhere", "the inset that placed it; its box already carries the result");
         if ("z" in el) note(sel, "z", DEFAULT_OF.z(el.z) ? "default" : "field", DEFAULT_OF.z(el.z) ? "" : "the order of the positioned bands in the nodes array; the number itself is not kept");
       }
@@ -823,7 +823,10 @@ function convert(pageDef, cap) {
         texture: null,
         ...(picture ? { picture } : {}),
         sketch: null,
-        from: { url: cap.url, host, selector: sel, at },
+        /* Out of the flow, as the capture measured it: an absolute or fixed element
+           sizes nothing that holds it (his SOL WORKS badge overhangs its header on
+           purpose), so a wrapper is never grown to take it in. */
+        from: { url: cap.url, host, selector: sel, at, ...(el.pos === "absolute" || el.pos === "fixed" ? { position: el.pos } : {}) },
         ...(layout ? { layout } : {}),
         ...(pad ? { pad } : {}),
         ...(edge ? { edge } : {}),
