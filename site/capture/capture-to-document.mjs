@@ -222,6 +222,37 @@ function alphaOf(v) {
 }
 const isNone = (v) => !v || v === "none" || v === "transparent" || v === "rgba(0, 0, 0, 0)";
 
+/**
+ * Any colour the browser writes, as sRGB [r, g, b, a] with r, g, b in 0..255:
+ * rgb(), rgba(), and the oklab() / oklch() a Tailwind v4 `/10` tint computes to.
+ * Null for anything else.
+ */
+function srgbaOf(v) {
+  const s = (v ?? "").trim();
+  const c = rgba(s);
+  if (c && /^rgba?\(/i.test(s)) return c;
+  const m = /^(oklab|oklch)\(\s*([-\d.]+%?)\s+([-\d.]+%?)\s+([-\d.]+)(?:deg)?%?\s*(?:\/\s*[\d.]+%?\s*)?\)$/i.exec(s);
+  if (!m) return null;
+  const num = (x, pctOf) => (x.endsWith("%") ? (Number(x.slice(0, -1)) / 100) * pctOf : Number(x));
+  const L = num(m[2], 1);
+  let a, b;
+  if (m[1].toLowerCase() === "oklab") { a = num(m[3], 0.4); b = num(m[4], 0.4); }
+  else { const C = num(m[3], 0.4), h = (Number(m[4]) * Math.PI) / 180; a = C * Math.cos(h); b = C * Math.sin(h); }
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const mm = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const ss = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  const lin = [
+    4.0767416621 * l - 3.3077115913 * mm + 0.2309699292 * ss,
+    -1.2684380046 * l + 2.6097574011 * mm - 0.3413193965 * ss,
+    -0.0041960863 * l - 0.7034186147 * mm + 1.707614701 * ss,
+  ];
+  const gamma = (x) => { const y = Math.min(1, Math.max(0, x)); return 255 * (y <= 0.0031308 ? 12.92 * y : 1.055 * y ** (1 / 2.4) - 0.055); };
+  return [...lin.map(gamma), alphaOf(s)];
+}
+/** `fg` laid over an opaque `bg`, as the browser composites: in sRGB, by fg's alpha. */
+const over = (fg, bg) => [0, 1, 2].map((i) => fg[i] * fg[3] + bg[i] * (1 - fg[3]));
+const rgbText = (c) => `rgb(${c.slice(0, 3).map((x) => Math.round(x)).join(", ")})`;
+
 const round2 = (n) => Math.round(n * 100) / 100;
 const cut = (s, n) => (s.length <= n ? s : `${s.slice(0, n - 1).trimEnd()}…`);
 
@@ -527,14 +558,38 @@ function convert(pageDef, cap) {
        accent the most coloured thing in it; a button's edge is always its accent, because that is what the part draws the edge in. */
     const colour = {};
     const border = borderOf(el.border);
-    if (el.bg) {
-      if (PARSEABLE.test(el.bg)) {
-        if (kind === "button") { colour.bg = el.bg; colour.accent = el.bg; note(sel, "bg", "field", "colour.bg: the node's own fill, painted by Fill; the button part paints nothing over a fill the node named"); }
+    /*
+     * A translucent fill is carried as the colour it looks. The document reads
+     * #hex, rgb() and oklch() and drops alpha, so `bg-[#00ff00]/10` (the
+     * browser writes oklab(… / 0.1)) was dropped outright and his active
+     * time-range button drew as an empty outline. It is composited here, in
+     * sRGB as the browser does, over what is painted behind it: the nearest
+     * ancestor's fill, itself composited if it is translucent, else the
+     * page's ground. Measured values only; the ledger says it was done.
+     */
+    const behind = (n) => {
+      for (let p = n.parent; p; p = p.parent) {
+        const c = !isNone(p.bg) && srgbaOf(p.bg);
+        if (c && c[3] > 0) return c[3] >= 1 ? c : over(c, behind(p));
+      }
+      return srgbaOf(cap.bodyBg) ?? [255, 255, 255, 1];
+    };
+    let fill = el.bg;
+    if (el.bg && !isNone(el.bg) && (alphaOf(el.bg) < 1 || !PARSEABLE.test(el.bg))) {
+      const c = srgbaOf(el.bg);
+      if (c && c[3] > 0) {
+        fill = rgbText(c[3] >= 1 ? c : over(c, behind(el)));
+        note(sel, "bg", "field", `${el.bg} carried as ${fill}: ${c[3] >= 1 ? "converted" : "composited over what is painted behind it"}, because the document reads no alpha and no ${el.bg.split("(")[0]}()`);
+      }
+    }
+    if (fill) {
+      if (PARSEABLE.test(fill)) {
+        if (kind === "button") { colour.bg = fill; colour.accent = fill; note(sel, "bg", "field", "colour.bg: the node's own fill, painted by Fill; the button part paints nothing over a fill the node named"); }
         else if (kind === "box") {
-          colour.bg = el.bg; colour.surface = el.bg;
+          colour.bg = fill; colour.surface = fill;
           note(sel, "bg", "field", "colour.bg and colour.surface");
         }
-        else { colour.bg = el.bg; note(sel, "bg", kind === "picture" ? "stored" : "field", kind === "picture" ? "colour.bg, under the picture" : "colour.bg"); }
+        else { colour.bg = fill; note(sel, "bg", kind === "picture" ? "stored" : "field", kind === "picture" ? "colour.bg, under the picture" : "colour.bg"); }
       } else {
         note(sel, "bg", "nowhere", `${el.bg.split("(")[0]}() is not a colour the document reads (parseColor: #hex, rgb, oklch; alpha dropped)`);
       }
