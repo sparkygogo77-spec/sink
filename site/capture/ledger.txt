@@ -246,6 +246,9 @@ mar  (165): nowhere 165
 maxw  (38): nowhere 18, default 20
     18× nowhere: a node has a size, not a constraint on one
 
+metrics  (1): field 1
+    1× field: measured on this machine: "$116.59" in the site's monospace is 59.3px; the capture recorded that box at 59
+
 minh  (442): nowhere 9, default 369, folded 64
     9× nowhere: the page's height is derived
 
@@ -332,15 +335,15 @@ ta  (545): default 136, field 85, n/a 260, folded 64
     20× n/a: a text property on a picture
     13× field: text.align left; the button sets its words where the node said
 
-text  (348): field 284, folded 64
+text  (382): field 317, folded 64, stored 1
     220× field: content
     64× field: content, from the child that held the words
+    16× field: content " project": the trim took a space the page drew; "project" is 84px in a 96px box, exactly one space (12px) short, and a run touches it on the left
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(1))
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(2))
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(3))
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(4))
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(5))
-    8× folded: the button's content (body > div > aside > nav > button:nth-of-type(6))
 
 title  (41): field 41
     16× field: the accessible name the tree computed from it ("Documentation"): label and data, never words drawn in the box

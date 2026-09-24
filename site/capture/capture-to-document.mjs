@@ -130,6 +130,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { createHash } from "node:crypto";
+import { measureParts, verdicts } from "./join-arbiter.mjs";
 
 /* ------------------------------------------------------------------ */
 /* Arguments                                                            */
@@ -969,6 +970,43 @@ for (const f of carried.fonts) note("(faces)", f.family, f.carried ? "field" : "
 for (const f of carried.named) note("(faces)", f, "nowhere", "a system face: no rule declares it, so it is named and needs no file");
 for (const f of declared) if (!used.some((u) => same(u, f))) note("(faces)", f, "default", "declared by the page but no captured element is set in it, so it is not carried");
 for (const g of generics) note("(faces)", g, "nowhere", `a generic keyword: the machine's own face, a different face on a different machine, and it cannot be carried — every box set in it was measured in this machine's`);
+
+/* ------------------------------------------------------------------ */
+/* The joins, settled by the boxes (join-arbiter.mjs)                   */
+/* ------------------------------------------------------------------ */
+
+/*
+ * `own()` joined each element's text nodes with a space and trimmed the
+ * ends, so a part's words can carry a space the page never drew ("$ 116.59")
+ * or have lost one it did (" project"). The box was measured off the laid-out
+ * page, so it settles which, and only where it can: one candidate space, or
+ * one touching neighbour. Anything else is left as captured and noted. The
+ * widths are this machine's; the ledger says what they were.
+ */
+{
+  const measured = await measureParts(nodes, carried.fonts, BASE_PX);
+  if (!measured) {
+    note("(joins)", "text", "nowhere", "not settled: no browser to measure in (set PLAYWRIGHT_MODULE), so every part keeps its words as captured");
+    console.warn("joins: no Playwright found, so the captured joins are kept as they are");
+  } else {
+    note("(joins)", "metrics", "field", `measured on this machine: "$116.59" in the site's monospace is ${measured.probe.toFixed(1)}px; the capture recorded that box at 59`);
+    const byId = new Map(nodes.map((x) => [x.id, x]));
+    for (const v of verdicts(nodes, measured, BASE_PX)) {
+      const part = byId.get(v.id);
+      notePage = v.pageId;
+      if (v.verdict === "unclear") {
+        note(v.sel, "text", "stored", `kept as captured, ${JSON.stringify(v.text)}: ${v.why} (words ${v.words}px in a ${v.inner}px box)`);
+        continue;
+      }
+      if (part.label === part.content) part.label = v.to.trim();
+      part.content = v.to;
+      note(v.sel, "text", "field", v.verdict === "drop"
+        ? `content ${JSON.stringify(v.to)}: the join put a space in that the page did not draw; ${JSON.stringify(v.text)} is ${v.words}px in a ${v.inner}px box, one space (${v.space}px) too wide`
+        : `content ${JSON.stringify(v.to)}: the trim took a space the page drew; ${JSON.stringify(v.text)} is ${v.words}px in a ${v.inner}px box, exactly one space (${v.space}px) short, and a run touches it on the ${v.verdict === "lead" ? "left" : "right"}`);
+    }
+    notePage = "";
+  }
+}
 
 /* ------------------------------------------------------------------ */
 /* The document                                                         */
