@@ -171,7 +171,7 @@ fill  (240): folded 240
 font  (1): field 1
     1× field: type.bodyFamily and type.headingFamily as the class "monospace"; the stack itself has no field
 
-fs  (616): field 292, n/a 260, folded 64
+fs  (608): field 284, n/a 260, folded 64
     240× n/a: a text property on a stroke
     89× field: font.size 0.75 × base 16 = 12px
     64× field: font.size 0.88 × base 16 = undefinedpx
@@ -253,8 +253,8 @@ monospace  (1): nowhere 1
     1× nowhere: a generic keyword: the machine's own face, a different face on a different machine, and it cannot be carried — every box set in it was measured in this machine's
 
 name  (181): field 181
-    105× field: the accessible name: label and data (the same as its words)
-    34× field: the accessible name: label and data
+    97× field: the accessible name: label and data (the same as its words)
+    42× field: the accessible name: label and data
     22× field: the accessible name: label
     20× field: the accessible name: label (the same as its words)
 
@@ -332,8 +332,8 @@ ta  (545): default 136, field 85, n/a 260, folded 64
     20× n/a: a text property on a picture
     13× field: text.align left; the button sets its words where the node said
 
-text  (356): field 292, folded 64
-    228× field: content
+text  (348): field 284, folded 64
+    220× field: content
     64× field: content, from the child that held the words
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(1))
     8× folded: the button's content (body > div > aside > nav > button:nth-of-type(2))

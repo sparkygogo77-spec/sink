@@ -499,7 +499,13 @@ function convert(pageDef, cap) {
     return "box";
   }
   for (const el of all) el.kind = classify(el);
-  const buttonWords = (el) => (el.text ?? "").trim() || wordsWithin(el);
+  /*
+   * A button's words are its own, else the words of the children folded into
+   * it, and nothing deeper. Gathering deeper than folding drew his wallet
+   * button's address and age twice: once by the button, in white, and once
+   * by the spans below its direct child, which are parts of their own.
+   */
+  const buttonWords = (el) => (el.text ?? "").trim() || el.kids.filter((k) => k.kind === "folded").map((k) => (k.text ?? "").trim()).join(" ").replace(/\s+/g, " ").trim();
 
   const positioned = (el) => el.pos === "fixed" || el.pos === "absolute";
   function bandOf(el) {
