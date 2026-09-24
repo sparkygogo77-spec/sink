@@ -67,14 +67,17 @@ check("the captures give the box something to settle in both directions",
   `${by("drop").length} inserted, ${by("lead").length + by("trail").length} dropped, ${by("unclear").length} it cannot settle`);
 
 const node = new Map(doc.nodes.map((n) => [n.id, n]));
-const wrong = (vs) => vs.filter((v) => node.get(v.id)?.content !== v.to);
+/* A part folded back into its sentence (hole-arbiter.mjs) is no longer a part: its settled words are a run of the sentence round it. */
+const words = (c) => (typeof c === "string" ? c : (c ?? []).map((s) => s.text ?? "").join(""));
+const foldedInto = (v) => doc.nodes.find((n) => n.pageId === v.pageId && Array.isArray(n.content) && v.sel?.startsWith(`${n.from?.selector} > `) && n.content.some((r) => r.text === v.to));
+const wrong = (vs) => vs.filter((v) => (node.get(v.id) ? node.get(v.id).content !== v.to : !foldedInto(v)));
 const show = (vs) => vs.slice(0, 3).map((v) => `${v.id} ${JSON.stringify(node.get(v.id)?.content)} (captured ${JSON.stringify(v.text)}, box ${v.inner}, words ${v.words})`).join("; ");
 
 const ins = by("drop");
 check(`every part whose words were one space too wide for their box has lost that space (${ins.length})`, wrong(ins).length === 0, show(wrong(ins)));
 const dropped = [...by("lead"), ...by("trail")];
 check(`every run whose box held one more space than its words has it back, on the side its neighbour touches (${dropped.length})`, wrong(dropped).length === 0, show(wrong(dropped)));
-const guessed = by("unclear").filter((v) => node.get(v.id)?.content !== v.text);
+const guessed = by("unclear").filter((v) => (node.get(v.id) ? node.get(v.id).content !== v.text : !foldedInto({ ...v, to: v.text })));
 check(`what the box cannot settle is left exactly as captured (${by("unclear").length})`, guessed.length === 0, show(guessed));
 const moved = doc.nodes.filter((n) => asCaptured(n) !== undefined && typeof n.content === "string" && n.content !== asCaptured(n) && !said.some((v) => v.id === n.id && v.verdict !== "unclear"));
 check("no other part's words differ from the capture's", moved.length === 0, moved.slice(0, 3).map((n) => `${n.id} ${JSON.stringify(n.content)}`).join("; "));

@@ -131,6 +131,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { createHash } from "node:crypto";
 import { measureParts, verdicts } from "./join-arbiter.mjs";
+import { holesIn, placeHoles } from "./hole-arbiter.mjs";
 
 /* ------------------------------------------------------------------ */
 /* Arguments                                                            */
@@ -1005,6 +1006,50 @@ for (const g of generics) note("(faces)", g, "nowhere", `a generic keyword: the 
         : `content ${JSON.stringify(v.to)}: the trim took a space the page drew; ${JSON.stringify(v.text)} is ${v.words}px in a ${v.inner}px box, exactly one space (${v.space}px) short, and a run touches it on the ${v.verdict === "lead" ? "left" : "right"}`);
     }
     notePage = "";
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* The holes, filled from inside (hole-arbiter.mjs)                     */
+/* ------------------------------------------------------------------ */
+
+/*
+ * A sentence whose own words were read without the elements inside it takes
+ * their words back, where its measured line puts them; the elements stop
+ * being parts. Run after the joins, so a child's words are already settled
+ * (the footer's " project" has its space). Spacing the box cannot tell apart
+ * follows the convention, and the ledger says so, per sentence.
+ */
+{
+  const holes = holesIn(nodes);
+  const placed = await placeHoles(holes, carried.fonts, BASE_PX);
+  if (!placed) {
+    if (holes.length) note("(holes)", "text", "nowhere", `not filled: no browser to measure in, so ${holes.length} sentences keep their words as captured and their elements stay parts`);
+  } else {
+    const gone = new Set();
+    holes.forEach(({ p, kids }, i) => {
+      const r = placed[i];
+      notePage = p.pageId;
+      if (r.place === null) { note(p.from.selector, "text", "stored", `kept as captured: ${r.why}`); return; }
+      const run = (k) => {
+        const s = { text: k.content };
+        if (k.colour?.text) s.colour = k.colour.text;
+        if (k.font?.weight && k.font.weight !== (p.font?.weight ?? 400)) s.weight = k.font.weight;
+        if (k.font?.face && k.font.face !== p.font?.face) s.face = k.font.face;
+        if (k.link) s.link = k.link;
+        return s;
+      };
+      const was = p.content;
+      const runs = [...(r.A + r.before ? [{ text: r.A + r.before }] : []), ...kids.map(run), ...(r.after + r.B ? [{ text: r.after + r.B }] : [])];
+      const reads = runs.map((x) => x.text).join("");
+      if (p.label === was) p.label = reads;
+      p.content = runs;
+      for (const k of kids) gone.add(k.id);
+      note(p.from.selector, "text", "field", `${JSON.stringify(was)} -> ${JSON.stringify(reads)}: ${kids.length} element${kids.length === 1 ? "" : "s"} folded back in as run${kids.length === 1 ? "" : "s"} (${kids.map((k) => k.from.selector.split(" > ").pop()).join(", ")}), placed where the line puts the first at its recorded x (${r.off >= 0 ? "+" : ""}${r.off}px); spacing ${r.measured ? "MEASURED" : `CONVENTION (the box allows ${r.readings} spacings and cannot tell them apart; chose ${JSON.stringify(r.A.slice(-8) + r.before + "…" + r.after + r.B.slice(0, 8))})`}`);
+    });
+    notePage = "";
+    for (let i = nodes.length - 1; i >= 0; i--) if (gone.has(nodes[i].id)) nodes.splice(i, 1);
+    note("(holes)", "parts", "folded", `${gone.size} parts folded into ${holes.filter((_, i) => placed[i].place !== null).length} sentences`);
   }
 }
 

@@ -1,4 +1,4 @@
-1042 captured elements on 9 pages → 720 parts, 0 groups, 3 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png, assets/pictures/pic_95e3b0fe.png), 1 faces carried
+1042 captured elements on 9 pages → 689 parts, 0 groups, 3 pictures (assets/pictures/pic_cc8659c3.png, assets/pictures/pic_ebf39fa1.png, assets/pictures/pic_95e3b0fe.png), 1 faces carried
 
 page_home (Creator Hub, /): 168 elements → 118 parts
   elements by kind: {"page":2,"box":45,"words":30,"button":17,"picture":2,"icon":21,"stroke":40,"folded":8,"heading":3}
@@ -277,6 +277,9 @@ page[1]  (1): nowhere 1
 pages  (1): field 1
     1× field: 9 pages, read from the site's source (routes.json)
 
+parts  (1): folded 1
+    1× folded: 31 parts folded into 15 sentences
+
 placeholder  (1): field 1
     1× field: prompt and data, as evidence of what the field is for; not words drawn in the box, which the page does not draw either
 
@@ -335,7 +338,7 @@ ta  (545): default 136, field 85, n/a 260, folded 64
     20× n/a: a text property on a picture
     13× field: text.align left; the button sets its words where the node said
 
-text  (382): field 317, folded 64, stored 1
+text  (397): field 332, folded 64, stored 1
     220× field: content
     64× field: content, from the child that held the words
     16× field: content " project": the trim took a space the page drew; "project" is 84px in a 96px box, exactly one space (12px) short, and a run touches it on the left

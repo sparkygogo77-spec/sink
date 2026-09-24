@@ -3167,7 +3167,22 @@
       "featureId": "prose",
       "label": "paragraph: Launch your first token on to see P…",
       "prompt": "Captured from ccc-woad.vercel.app/ (creator-hub) as body > div > main > div > div:nth-of-type(4) > div:nth-of-type(2) > p:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a paragraph.",
-      "content": "Launch your first token on to see PnL tracking here",
+      "content": [
+        {
+          "text": "Launch your first token on "
+        },
+        {
+          "text": "pump.fun",
+          "colour": "rgb(0, 255, 0)",
+          "link": {
+            "kind": "url",
+            "target": "https://pump.fun/"
+          }
+        },
+        {
+          "text": " to see PnL tracking here"
+        }
+      ],
       "data": "",
       "x": 281,
       "y": 978,
@@ -3211,65 +3226,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > main > div > div:nth-of-type(4) > div:nth-of-type(2) > p:nth-of-type(2)",
-        "at": 1790059307353
-      },
-      "text": {
-        "align": "center"
-      }
-    },
-    {
-      "id": "n_prose_56",
-      "pageId": "page_home",
-      "featureId": "prose",
-      "label": "link “pump.fun”",
-      "prompt": "Captured from ccc-woad.vercel.app/ (creator-hub) as body > div > main > div > div:nth-of-type(4) > div:nth-of-type(2) > p:nth-of-type(2) > a. The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a link, named “pump.fun”.",
-      "content": "pump.fun",
-      "data": "link, named “pump.fun”",
-      "x": 984,
-      "y": 980,
-      "w": 67,
-      "h": 16,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": {
-        "kind": "url",
-        "target": "https://pump.fun/"
-      },
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 0.88,
-        "weight": 400,
-        "leading": 1.43
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > main > div > div:nth-of-type(4) > div:nth-of-type(2) > p:nth-of-type(2) > a",
         "at": 1790059307353
       },
       "text": {
@@ -6790,9 +6746,25 @@
       "id": "n_prose_115",
       "pageId": "page_home",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (creator-hub) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -6836,165 +6808,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059307353
-      }
-    },
-    {
-      "id": "n_prose_116",
-      "pageId": "page_home",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (creator-hub) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059307353
-      }
-    },
-    {
-      "id": "n_prose_117",
-      "pageId": "page_home",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (creator-hub) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059307353
-      }
-    },
-    {
-      "id": "n_prose_118",
-      "pageId": "page_home",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (creator-hub) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059307353
       }
     },
@@ -11448,9 +11261,25 @@
       "id": "n_prose_194",
       "pageId": "page_cleanup",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (cleanup) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -11494,165 +11323,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059315845
-      }
-    },
-    {
-      "id": "n_prose_195",
-      "pageId": "page_cleanup",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cleanup) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059315845
-      }
-    },
-    {
-      "id": "n_prose_196",
-      "pageId": "page_cleanup",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cleanup) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059315845
-      }
-    },
-    {
-      "id": "n_prose_197",
-      "pageId": "page_cleanup",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cleanup) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059315845
       }
     },
@@ -15673,9 +15343,25 @@
       "id": "n_prose_265",
       "pageId": "page_tokens",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (tokens) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -15719,165 +15405,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059324173
-      }
-    },
-    {
-      "id": "n_prose_266",
-      "pageId": "page_tokens",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (tokens) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059324173
-      }
-    },
-    {
-      "id": "n_prose_267",
-      "pageId": "page_tokens",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (tokens) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059324173
-      }
-    },
-    {
-      "id": "n_prose_268",
-      "pageId": "page_tokens",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (tokens) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059324173
       }
     },
@@ -16484,7 +16011,18 @@
       "featureId": "prose",
       "label": "paragraph: It may be in the tab accessed by en…",
       "prompt": "Captured from ccc-woad.vercel.app/ (nfts) as body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a paragraph.",
-      "content": "It may be in the tab accessed by enabling pro mode on the bottom left.",
+      "content": [
+        {
+          "text": "It may be in the "
+        },
+        {
+          "text": "\"Unknown\"",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": " tab accessed by enabling pro mode on the bottom left."
+        }
+      ],
       "data": "",
       "x": 321,
       "y": 554,
@@ -16528,62 +16066,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2)",
-        "at": 1790059332418
-      },
-      "text": {
-        "align": "center"
-      }
-    },
-    {
-      "id": "n_prose_281",
-      "pageId": "page_nfts",
-      "featureId": "prose",
-      "label": "\"Unknown\"",
-      "prompt": "Captured from ccc-woad.vercel.app/ (nfts) as body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2) > span. The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "\"Unknown\"",
-      "data": "",
-      "x": 816,
-      "y": 556,
-      "w": 76,
-      "h": 16,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 0.88,
-        "weight": 400,
-        "leading": 1.43
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2) > span",
         "at": 1790059332418
       },
       "text": {
@@ -20162,9 +19644,25 @@
       "id": "n_prose_341",
       "pageId": "page_nfts",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (nfts) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -20208,165 +19706,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059332418
-      }
-    },
-    {
-      "id": "n_prose_342",
-      "pageId": "page_nfts",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (nfts) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059332418
-      }
-    },
-    {
-      "id": "n_prose_343",
-      "pageId": "page_nfts",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (nfts) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059332418
-      }
-    },
-    {
-      "id": "n_prose_344",
-      "pageId": "page_nfts",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (nfts) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059332418
       }
     },
@@ -20973,7 +20312,18 @@
       "featureId": "prose",
       "label": "paragraph: It may be in the tab accessed by en…",
       "prompt": "Captured from ccc-woad.vercel.app/ (cnfts) as body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a paragraph.",
-      "content": "It may be in the tab accessed by enabling pro mode on the bottom left.",
+      "content": [
+        {
+          "text": "It may be in the "
+        },
+        {
+          "text": "\"Unknown\"",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": " tab accessed by enabling pro mode on the bottom left."
+        }
+      ],
       "data": "",
       "x": 321,
       "y": 554,
@@ -21017,62 +20367,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2)",
-        "at": 1790059340545
-      },
-      "text": {
-        "align": "center"
-      }
-    },
-    {
-      "id": "n_prose_357",
-      "pageId": "page_cnfts",
-      "featureId": "prose",
-      "label": "\"Unknown\"",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cnfts) as body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2) > span. The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "\"Unknown\"",
-      "data": "",
-      "x": 816,
-      "y": 556,
-      "w": 76,
-      "h": 16,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 0.88,
-        "weight": 400,
-        "leading": 1.43
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2) > span",
         "at": 1790059340545
       },
       "text": {
@@ -24651,9 +23945,25 @@
       "id": "n_prose_417",
       "pageId": "page_cnfts",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (cnfts) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -24697,165 +24007,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059340545
-      }
-    },
-    {
-      "id": "n_prose_418",
-      "pageId": "page_cnfts",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cnfts) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059340545
-      }
-    },
-    {
-      "id": "n_prose_419",
-      "pageId": "page_cnfts",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cnfts) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059340545
-      }
-    },
-    {
-      "id": "n_prose_420",
-      "pageId": "page_cnfts",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (cnfts) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059340545
       }
     },
@@ -28868,9 +28019,25 @@
       "id": "n_prose_488",
       "pageId": "page_domains",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (domains) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -28914,165 +28081,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059348938
-      }
-    },
-    {
-      "id": "n_prose_489",
-      "pageId": "page_domains",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (domains) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059348938
-      }
-    },
-    {
-      "id": "n_prose_490",
-      "pageId": "page_domains",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (domains) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059348938
-      }
-    },
-    {
-      "id": "n_prose_491",
-      "pageId": "page_domains",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (domains) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059348938
       }
     },
@@ -29679,7 +28687,18 @@
       "featureId": "prose",
       "label": "paragraph: It may be in the tab accessed by en…",
       "prompt": "Captured from ccc-woad.vercel.app/ (lp) as body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a paragraph.",
-      "content": "It may be in the tab accessed by enabling pro mode on the bottom left.",
+      "content": [
+        {
+          "text": "It may be in the "
+        },
+        {
+          "text": "\"Unknown\"",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": " tab accessed by enabling pro mode on the bottom left."
+        }
+      ],
       "data": "",
       "x": 321,
       "y": 554,
@@ -29723,62 +28742,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2)",
-        "at": 1790059356890
-      },
-      "text": {
-        "align": "center"
-      }
-    },
-    {
-      "id": "n_prose_504",
-      "pageId": "page_lp",
-      "featureId": "prose",
-      "label": "\"Unknown\"",
-      "prompt": "Captured from ccc-woad.vercel.app/ (lp) as body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2) > span. The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "\"Unknown\"",
-      "data": "",
-      "x": 816,
-      "y": 556,
-      "w": 76,
-      "h": 16,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 0.88,
-        "weight": 400,
-        "leading": 1.43
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > main > div > div:nth-of-type(2) > div:nth-of-type(2) > p:nth-of-type(2) > span",
         "at": 1790059356890
       },
       "text": {
@@ -33357,9 +32320,25 @@
       "id": "n_prose_564",
       "pageId": "page_lp",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (lp) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -33403,165 +32382,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059356890
-      }
-    },
-    {
-      "id": "n_prose_565",
-      "pageId": "page_lp",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (lp) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059356890
-      }
-    },
-    {
-      "id": "n_prose_566",
-      "pageId": "page_lp",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (lp) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059356890
-      }
-    },
-    {
-      "id": "n_prose_567",
-      "pageId": "page_lp",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (lp) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059356890
       }
     },
@@ -37734,9 +36554,25 @@
       "id": "n_prose_638",
       "pageId": "page_unknown",
       "featureId": "prose",
-      "label": "v2.0.0 |",
+      "label": "v2.0.0 | A SolWorks project",
       "prompt": "Captured from ccc-woad.vercel.app/ (unknown) as body > div > footer > div > div:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "v2.0.0 |",
+      "content": [
+        {
+          "text": "v2.0.0 | "
+        },
+        {
+          "text": "A Sol",
+          "colour": "rgb(0, 255, 0)"
+        },
+        {
+          "text": "Works",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " project",
+          "colour": "rgb(0, 255, 0)"
+        }
+      ],
       "data": "",
       "x": 1197,
       "y": 1383,
@@ -37780,165 +36616,6 @@
         "url": "https://ccc-woad.vercel.app/",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > footer > div > div:nth-of-type(2)",
-        "at": 1790059365041
-      }
-    },
-    {
-      "id": "n_prose_639",
-      "pageId": "page_unknown",
-      "featureId": "prose",
-      "label": "A Sol",
-      "prompt": "Captured from ccc-woad.vercel.app/ (unknown) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "A Sol",
-      "data": "",
-      "x": 1305,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(1)",
-        "at": 1790059365041
-      }
-    },
-    {
-      "id": "n_prose_640",
-      "pageId": "page_unknown",
-      "featureId": "prose",
-      "label": "Works",
-      "prompt": "Captured from ccc-woad.vercel.app/ (unknown) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Works",
-      "data": "",
-      "x": 1365,
-      "y": 1385,
-      "w": 60,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(2)",
-        "at": 1790059365041
-      }
-    },
-    {
-      "id": "n_prose_641",
-      "pageId": "page_unknown",
-      "featureId": "prose",
-      "label": "project",
-      "prompt": "Captured from ccc-woad.vercel.app/ (unknown) as body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3). The box, the words, the colours and the type are the ones measured on the page.",
-      "content": " project",
-      "data": "",
-      "x": 1425,
-      "y": 1385,
-      "w": 96,
-      "h": 12,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(0, 255, 0)"
-      },
-      "font": {
-        "face": "Press Start 2P",
-        "size": 0.75,
-        "weight": 400,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > footer > div > div:nth-of-type(2) > span:nth-of-type(3)",
         "at": 1790059365041
       }
     },
@@ -40829,7 +39506,15 @@
       "featureId": "value-prop",
       "label": "heading “🔥 Burn Tokens. Reclaim SOL.”: Burn Tokens. Reclaim SOL.",
       "prompt": "Captured from ccc-woad.vercel.app/docs as body > div > div > main > div > div > div > div:nth-of-type(2) > h1. The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a heading, named “🔥 Burn Tokens. Reclaim SOL.”.",
-      "content": "Burn Tokens. Reclaim SOL.",
+      "content": [
+        {
+          "text": "🔥",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " Burn Tokens. Reclaim SOL."
+        }
+      ],
       "data": "",
       "x": 466,
       "y": 281,
@@ -40882,59 +39567,6 @@
         "direction": "row",
         "align": "center",
         "gap": 8
-      }
-    },
-    {
-      "id": "n_prose_694",
-      "pageId": "page_docs",
-      "featureId": "prose",
-      "label": "🔥",
-      "prompt": "Captured from ccc-woad.vercel.app/docs as body > div > div > main > div > div > div > div:nth-of-type(2) > h1 > span. The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "🔥",
-      "data": "",
-      "x": 466,
-      "y": 281,
-      "w": 45,
-      "h": 40,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 2.25,
-        "weight": 700,
-        "leading": 1.11
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/docs",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > div > main > div > div > div > div:nth-of-type(2) > h1 > span",
-        "at": 1790059369026
       }
     },
     {
@@ -41515,7 +40147,19 @@
       "featureId": "prose",
       "label": "paragraph: With built-in , instantly swap recl…",
       "prompt": "Captured from ccc-woad.vercel.app/docs as body > div > div > main > div > div > div > div:nth-of-type(4) > p. The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a paragraph.",
-      "content": "With built-in , instantly swap reclaimed SOL for USDC, USDT, JUP, BONK, or any token in one seamless, in-app flow.",
+      "content": [
+        {
+          "text": "With built-in "
+        },
+        {
+          "text": "Jupiter DEX integration",
+          "colour": "oklch(0.872 0.01 258.338)",
+          "weight": 700
+        },
+        {
+          "text": ", instantly swap reclaimed SOL for USDC, USDT, JUP, BONK, or any token in one seamless, in-app flow."
+        }
+      ],
       "data": "",
       "x": 466,
       "y": 794,
@@ -41559,59 +40203,6 @@
         "url": "https://ccc-woad.vercel.app/docs",
         "host": "ccc-woad.vercel.app",
         "selector": "body > div > div > main > div > div > div > div:nth-of-type(4) > p",
-        "at": 1790059369026
-      }
-    },
-    {
-      "id": "n_prose_707",
-      "pageId": "page_docs",
-      "featureId": "prose",
-      "label": "Jupiter DEX integration",
-      "prompt": "Captured from ccc-woad.vercel.app/docs as body > div > div > main > div > div > div > div:nth-of-type(4) > p > span. The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "Jupiter DEX integration",
-      "data": "",
-      "x": 600,
-      "y": 798,
-      "w": 221,
-      "h": 18,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "oklch(0.872 0.01 258.338)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 1,
-        "weight": 700,
-        "leading": 1.63
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/docs",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > div > main > div > div > div > div:nth-of-type(4) > p > span",
         "at": 1790059369026
       }
     },
@@ -41680,7 +40271,15 @@
       "featureId": "value-prop",
       "label": "heading “❓ Ready to Reclaim Your SOL”: Ready to Reclaim Your SOL",
       "prompt": "Captured from ccc-woad.vercel.app/docs as body > div > div > main > div > div > div > div:nth-of-type(5) > h2. The box, the words, the colours and the type are the ones measured on the page. The browser computes it as a heading, named “❓ Ready to Reclaim Your SOL”.",
-      "content": "Ready to Reclaim Your SOL",
+      "content": [
+        {
+          "text": "❓",
+          "colour": "rgb(255, 255, 255)"
+        },
+        {
+          "text": " Ready to Reclaim Your SOL"
+        }
+      ],
       "data": "",
       "x": 491,
       "y": 903,
@@ -41733,59 +40332,6 @@
         "direction": "row",
         "align": "center",
         "gap": 8
-      }
-    },
-    {
-      "id": "n_prose_710",
-      "pageId": "page_docs",
-      "featureId": "prose",
-      "label": "❓",
-      "prompt": "Captured from ccc-woad.vercel.app/docs as body > div > div > main > div > div > div > div:nth-of-type(5) > h2 > span. The box, the words, the colours and the type are the ones measured on the page.",
-      "content": "❓",
-      "data": "",
-      "x": 491,
-      "y": 903,
-      "w": 30,
-      "h": 32,
-      "groupId": null,
-      "options": {},
-      "priority": "must",
-      "custom": false,
-      "glyph": null,
-      "hue": null,
-      "locked": false,
-      "link": null,
-      "colour": {
-        "text": "rgb(255, 255, 255)"
-      },
-      "font": {
-        "family": "monospace",
-        "size": 1.5,
-        "weight": 700,
-        "leading": 1.33
-      },
-      "anim": null,
-      "animSpeed": 1,
-      "animDelay": 0,
-      "animEase": "smooth",
-      "shape": null,
-      "outline": null,
-      "kind": null,
-      "vector": null,
-      "role": null,
-      "cube": null,
-      "mesh": null,
-      "code": null,
-      "aura": null,
-      "auraSize": 1,
-      "auraStyle": "glow",
-      "texture": null,
-      "sketch": null,
-      "from": {
-        "url": "https://ccc-woad.vercel.app/docs",
-        "host": "ccc-woad.vercel.app",
-        "selector": "body > div > div > main > div > div > div > div:nth-of-type(5) > h2 > span",
-        "at": 1790059369026
       }
     },
     {
